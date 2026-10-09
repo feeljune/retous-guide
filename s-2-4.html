@@ -319,7 +319,7 @@ h4{margin-top:22px}
 </tr>
 </tbody></table></div>
 <p>일반 발송 캠페인에서는 「광고」만 고를 수 있습니다. 「알림」은 무조건 발송 캠페인에서만 됩니다.</p>
-<p><strong>3. Delay Time</strong> — 조건에 맞은 날부터 <strong>며칠 뒤에</strong> 보낼지입니다.</p>
+<p><strong>3. Delay Time</strong> — 조건에 맞은 날부터 <strong>며칠 뒤에</strong>(실시간이면 이벤트 뒤 <strong>몇 분 뒤에</strong>) 보낼지입니다.</p>
 <p>캠페인이 아니라 <strong>콘텐츠마다</strong> 정합니다. 캠페인 상세의 콘텐츠 목록에 <code>D + 1</code>처럼 표시됩니다.</p>
 <div class="tablewrap"><table>
 <thead>
@@ -334,7 +334,7 @@ h4{margin-top:22px}
 </tr>
 <tr>
 <td>실시간 발송</td>
-<td>이벤트가 일어난 뒤 분 단위 <span class="tbd">확인 필요 · 실시간 콘텐츠의 선택 범위</span></td>
+<td>분 단위. <code>3분 후</code> · <code>5분 후</code> · <code>10분 후</code> · <code>30분 후</code> · <code>60분 후</code> 중 고르거나, 직접 선택으로 <strong>5분 ~ 60분</strong>(1분 단위). 가입·주문 같은 이벤트가 일어난 시각부터 셉니다</td>
 </tr>
 </tbody></table></div>
 <div class="note note-note"><span class="note-label">참고</span><div class="note-body"><p>예약 발송 캠페인에는 <strong>발송 시각</strong>(예: 오전 10시)도 따로 있습니다. Delay Time은 &quot;며칠 뒤에&quot;, 발송 시각은 &quot;그날 몇 시에&quot;입니다.</p>
@@ -440,7 +440,7 @@ h4{margin-top:22px}
     document.addEventListener("click",function(e){ if(!e.target.closest(".search")) res.classList.remove("show"); });
     q.addEventListener("keydown",function(e){ if(e.key==="Escape"){ res.classList.remove("show"); } }); }
 
-  var tb=$("#tbdcount"); if(tb) tb.textContent="1";
+  var tb=$("#tbdcount"); if(tb) tb.textContent="0";
 
   var nav=$("#sidenav"), scrim=$("#scrim"), navbtn=$("#navbtn");
   function navOpen(on){ nav.classList.toggle("open",on); scrim.classList.toggle("open",on); navbtn.setAttribute("aria-expanded",on?"true":"false"); }

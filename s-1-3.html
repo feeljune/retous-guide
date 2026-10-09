@@ -354,7 +354,6 @@ h4{margin-top:22px}
 <td>—</td>
 </tr>
 </tbody></table></div>
-<p><span class="tbd">확인 필요 · 중지 후 데이터 보관 기간 미확정. 기획서에 「데이터 보관 종류 및 기간 설정 필요」로만 적혀 있음</span></p>
 <div class="pager"><a class="prev" href="s-1-2.html"><span>← 이전</span><b>메뉴 둘러보기</b></a><a class="next" href="s-1-4.html"><span>다음 →</span><b>계정 상태</b></a></div></section></main>
 </div>
 <button type="button" class="backbtn" id="backbtn" hidden>← 이전 페이지로</button>
@@ -403,7 +402,7 @@ h4{margin-top:22px}
     document.addEventListener("click",function(e){ if(!e.target.closest(".search")) res.classList.remove("show"); });
     q.addEventListener("keydown",function(e){ if(e.key==="Escape"){ res.classList.remove("show"); } }); }
 
-  var tb=$("#tbdcount"); if(tb) tb.textContent="2";
+  var tb=$("#tbdcount"); if(tb) tb.textContent="1";
 
   var nav=$("#sidenav"), scrim=$("#scrim"), navbtn=$("#navbtn");
   function navOpen(on){ nav.classList.toggle("open",on); scrim.classList.toggle("open",on); navbtn.setAttribute("aria-expanded",on?"true":"false"); }

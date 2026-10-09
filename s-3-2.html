@@ -198,6 +198,15 @@ body.searching .nores.show{display:block}
 .results .none{padding:10px 12px;color:var(--fg-3);font-size:13px}
 .search{position:relative}
 h3{margin-top:30px}
+.decision.dec2{max-width:980px;display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:20px;align-items:start}
+.dec2 .opts{flex-direction:column;align-items:stretch;gap:6px}.dec2 .opt{text-align:left}
+.dec2 .dec-r{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.dec2 .dec-img{width:100%;max-height:420px;object-fit:contain;border-radius:8px}
+.dec2 .dec-cap{font-size:12.5px;color:var(--fg-2);font-weight:600}.dec2 .dec-src{font-size:11px;color:var(--fg-3)}
+@media (max-width:700px){.decision.dec2{grid-template-columns:1fr}}
+.gallery{display:flex;flex-wrap:wrap;gap:14px;margin:12px 0 22px;max-width:980px}
+.gallery figure{margin:0;width:150px;text-align:center}.gallery img{width:100%;max-height:300px;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:#fff}
+.gallery figcaption{margin-top:6px;font-size:12.5px;color:var(--fg-2);font-weight:600}.gallery .gal-src{flex-basis:100%;font-size:11px;color:var(--fg-3)}
 details.more{margin:18px 0 24px;border:1px solid var(--line);border-radius:10px;background:#fafbfd;max-width:980px}details.more summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--fg-2);list-style:none}details.more summary::before{content:"▸ ";color:var(--accent)}details.more[open] summary::before{content:"▾ "}details.more summary::-webkit-details-marker{display:none}details.more>*:not(summary){margin-left:16px;margin-right:16px}details.more>ol{padding-left:36px;margin-bottom:14px}details.more li{margin:6px 0}details.more>p{margin-top:4px}
 .shot{margin:18px 0 22px;max-width:100%}.shot img{display:block;width:100%;max-width:980px;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.06)}.shot figcaption{margin-top:8px;font-size:13px;color:var(--fg-3)}
 .shot-ph{margin:18px 0 22px;padding:28px 16px;border:2px dashed var(--line);border-radius:10px;color:var(--fg-3);text-align:center;font-size:14px;max-width:980px}.shot-ph small{display:block;margin-top:4px;font-size:12px;opacity:.7}
@@ -305,6 +314,8 @@ h4{margin-top:22px}
 <li>채널추가형·복합형은 안내 문구 40자가 처음부터 들어가 있어서 글자수가 <code>40 / 1000</code>에서 시작합니다.</li>
 <li>부가정보에는 주소(URL)를 넣을 수 있고 변수는 못 넣습니다. 본문 아래, 버튼 위에 본문보다 조금 작은 글씨로 나옵니다.</li>
 </ul>
+<div class="gallery"><figure><img src="img/kakao/at-basic.png" alt="기본형 예시" loading="lazy"><figcaption>기본형</figcaption></figure><figure><img src="img/kakao/at-extra.png" alt="부가정보형 예시" loading="lazy"><figcaption>부가정보형</figcaption></figure><figure><img src="img/kakao/at-channel.png" alt="채널추가형 예시" loading="lazy"><figcaption>채널추가형</figcaption></figure><figure><img src="img/kakao/at-combined.png" alt="복합형 예시" loading="lazy"><figcaption>복합형</figcaption></figure><small class="gal-src">예시 출처: 카카오비즈니스 가이드</small></div>
+
 <p><strong>강조 유형</strong></p>
 <ul>
 <li><strong>이미지형</strong> — 이미지 1개. 눌러도 링크로 안 갑니다. 비율 2:1 고정, 800×400 권장, 500×250 이하는 못 올립니다. <code>jpg</code>/<code>png</code>, 최대 500KB.</li>
@@ -386,10 +397,14 @@ h4{margin-top:22px}
 </tbody></table></div>
 <div class="note note-danger"><span class="note-label">하지 마세요</span><div class="note-body"><p>하이라이트 타이틀·설명은 변수가 실제 값으로 바뀐 뒤 글자수를 넘으면 <strong>그 고객에게 안 나갑니다.</strong> 잘리는 게 아니라 안 가는 것입니다. 상품명 같은 긴 변수는 넣지 마세요.</p>
 </div></div><div class="note note-warn"><span class="note-label">주의</span><div class="note-body"><p>아이템 리스트를 추가하면 총 글자수가 <strong>700자</strong>(부가정보 최대 200자)로 줄어듭니다.</p>
-</div></div><p><strong>버튼</strong> — 1~5개, 세로. 기본형·부가정보형은 1개 필수, 채널추가형·복합형은 선택. 버튼명 14자(띄어쓰기 포함). 링크 주소는 최대 500자이고 그중 128자는 추적용입니다. 버튼에 변수는 못 씁니다.</p>
+</div></div><div class="gallery"><figure><img src="img/kakao/at-image.png" alt="이미지형 예시" loading="lazy"><figcaption>이미지형</figcaption></figure><figure><img src="img/kakao/at-highlight.png" alt="강조표기형 예시" loading="lazy"><figcaption>강조표기형</figcaption></figure><figure><img src="img/kakao/at-itemlist.png" alt="아이템리스트형 예시" loading="lazy"><figcaption>아이템리스트형</figcaption></figure><small class="gal-src">예시 출처: 카카오비즈니스 가이드</small></div>
+
+<p><strong>버튼</strong> — 1~5개, 세로. 기본형·부가정보형은 1개 필수, 채널추가형·복합형은 선택. 버튼명 14자(띄어쓰기 포함). 링크 주소는 최대 500자이고 그중 128자는 추적용입니다. 버튼에 변수는 못 씁니다.</p>
 <p><strong>줄바꿈</strong> — 본문 최대 5회.</p>
 <h3 id="가격에-취소선-넣기">가격에 취소선 넣기</h3><p>가격에 줄을 그어 보여줄 때 씁니다. 템플릿을 따로 만들 필요가 없습니다. <strong>타이틀 맨 끝에 <code>\s</code>를 붙이면 됩니다.</strong></p>
-<pre class="block"><code>87,000원\s   →   8̶7̶,̶0̶0̶0̶원̶</code></pre><ul>
+<pre class="block"><code>87,000원\s   →   8̶7̶,̶0̶0̶0̶원̶</code></pre><div class="gallery"><figure><img src="img/kakao/at-strike.png" alt="취소선 적용 예 예시" loading="lazy"><figcaption>취소선 적용 예</figcaption></figure><small class="gal-src">예시 출처: 카카오비즈니스 가이드</small></div>
+
+<ul>
 <li>쓸 수 있는 곳: 아이템 하이라이트 <strong>타이틀</strong>, 강조표기형 <strong>타이틀</strong>. 다른 곳에 넣으면 발송이 실패하거나 <code>\s</code>가 그대로 나갑니다.</li>
 <li><code>\s</code>는 글자수에 안 들어갑니다.</li>
 <li>카카오톡 10.0.0 이상에서만 보입니다. 그 아래 버전에서는 줄이 안 그어집니다.</li>
@@ -409,10 +424,11 @@ h4{margin-top:22px}
   $$("#sidenav a[data-page]").forEach(function(a){ if(a.getAttribute("data-page")===here) a.classList.add("on"); });
 
   $$(".decision").forEach(function(d){
-    var ans=document.createElement("div"); ans.className="answer"; ans.hidden=true; d.appendChild(ans);
+    var ans=document.createElement("div"); ans.className="answer"; ans.hidden=true; ($(".dec-l",d)||d).appendChild(ans);
     $$(".opt",d).forEach(function(btn){ btn.addEventListener("click",function(){
       $$(".opt",d).forEach(function(b){b.setAttribute("aria-pressed","false")}); btn.setAttribute("aria-pressed","true");
-      ans.textContent=btn.getAttribute("data-r"); ans.hidden=false; }); });
+      ans.textContent=btn.getAttribute("data-r"); ans.hidden=false;
+      var im=$(".dec-img",d), cap=$(".dec-cap",d), src=btn.getAttribute("data-img"); if(im&&src){ im.src=src; im.alt=btn.getAttribute("data-r")+" 예시"; if(cap) cap.textContent="예시 — "+btn.getAttribute("data-r"); } }); });
   });
 
   var toast=document.createElement("div"); toast.className="toast"; document.body.appendChild(toast); var tt=null;

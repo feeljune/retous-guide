@@ -193,6 +193,7 @@ body.searching .nores.show{display:block}
 .results .none{padding:10px 12px;color:var(--fg-3);font-size:13px}
 .search{position:relative}
 h3{margin-top:30px}
+details.more{margin:18px 0 24px;border:1px solid var(--line);border-radius:10px;background:#fafbfd;max-width:980px}details.more summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--fg-2);list-style:none}details.more summary::before{content:"▸ ";color:var(--accent)}details.more[open] summary::before{content:"▾ "}details.more summary::-webkit-details-marker{display:none}details.more>*:not(summary){margin-left:16px;margin-right:16px}details.more>ol{padding-left:36px;margin-bottom:14px}details.more li{margin:6px 0}details.more>p{margin-top:4px}
 .shot{margin:18px 0 22px;max-width:100%}.shot img{display:block;width:100%;max-width:980px;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.06)}.shot figcaption{margin-top:8px;font-size:13px;color:var(--fg-3)}
 .shot-ph{margin:18px 0 22px;padding:28px 16px;border:2px dashed var(--line);border-radius:10px;color:var(--fg-3);text-align:center;font-size:14px;max-width:980px}.shot-ph small{display:block;margin-top:4px;font-size:12px;opacity:.7}
 .fields{counter-reset:f;list-style:none;padding:0;margin:14px 0 24px;max-width:980px}.fields>li{counter-increment:f;position:relative;padding:10px 0 10px 44px;border-top:1px solid var(--line)}.fields>li:last-child{border-bottom:1px solid var(--line)}.fields>li::before{content:counter(f);position:absolute;left:4px;top:10px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}.fields>li b:first-child{display:inline-block;margin-right:6px}.fields>li p{margin:4px 0 0}.fields>li ul{margin:6px 0 0;padding-left:18px}.fields>li li{margin:2px 0}
@@ -239,6 +240,10 @@ h4{margin-top:22px}
 <td>그날 한 번이라도 활동한 사람 수</td>
 </tr>
 <tr>
+<td>MAU</td>
+<td>최근 30일에 한 번이라도 활동한 사람 수 (월간 지표)</td>
+</tr>
+<tr>
 <td>오디언스 수</td>
 <td>그날 콘텐츠를 보낼 수 있는 고객 수</td>
 </tr>
@@ -251,7 +256,7 @@ h4{margin-top:22px}
 <td>콘텐츠를 연 횟수</td>
 </tr>
 <tr>
-<td>오픈율</td>
+<td>오픈 전환율</td>
 <td>발송 대비 연 비율</td>
 </tr>
 <tr>
@@ -268,31 +273,39 @@ h4{margin-top:22px}
 </tr>
 <tr>
 <td>CRM 매출</td>
-<td>콘텐츠 발송과 연결된 매출</td>
+<td>콘텐츠 발송과 연결된 매출 (기여 기간 안에 일어난 구매)</td>
 </tr>
 <tr>
 <td>발송당 매출</td>
-<td>CRM 매출 ÷ 발송 수</td>
+<td>CRM 매출 ÷ 발송 수. <strong>캠페인 순서를 정하는 기준</strong></td>
 </tr>
 <tr>
-<td>비용</td>
-<td>그날 발송에 쓴 비용</td>
+<td>발송 비용</td>
+<td>그날 발송에 쓴 비용 (통수 × 채널 단가)</td>
 </tr>
 <tr>
 <td>구매전환단가</td>
-<td>비용 ÷ 구매 수</td>
+<td>발송 비용 ÷ 구매 수</td>
 </tr>
 <tr>
 <td>ROAS</td>
-<td>CRM 매출 ÷ 비용</td>
+<td>CRM 매출 ÷ 발송 비용</td>
 </tr>
 <tr>
 <td>전체 매출</td>
-<td>그날 전체 매출</td>
+<td>그날 가게 전체 매출</td>
 </tr>
 <tr>
 <td>CRM 매출 비중</td>
 <td>전체 매출 중 CRM 매출 비율</td>
+</tr>
+<tr>
+<td>기여 기간 D0 / D+1</td>
+<td>보낸 그날의 결과만 셀지(D0), 다음 날까지 셀지(D+1) → <a class="xref" href="s-2-6.html">2-6 STEP 6 발송하고 결과 확인하기</a></td>
+</tr>
+<tr>
+<td>LTV</td>
+<td>가입 월 묶음의 고객 한 명이 지금까지 쓴 누적 금액 → <a class="xref" href="s-4-4.html">4-4 LTV 분석</a></td>
 </tr>
 </tbody></table></div>
 <hr>

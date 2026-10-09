@@ -193,6 +193,7 @@ body.searching .nores.show{display:block}
 .results .none{padding:10px 12px;color:var(--fg-3);font-size:13px}
 .search{position:relative}
 h3{margin-top:30px}
+details.more{margin:18px 0 24px;border:1px solid var(--line);border-radius:10px;background:#fafbfd;max-width:980px}details.more summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--fg-2);list-style:none}details.more summary::before{content:"▸ ";color:var(--accent)}details.more[open] summary::before{content:"▾ "}details.more summary::-webkit-details-marker{display:none}details.more>*:not(summary){margin-left:16px;margin-right:16px}details.more>ol{padding-left:36px;margin-bottom:14px}details.more li{margin:6px 0}details.more>p{margin-top:4px}
 .shot{margin:18px 0 22px;max-width:100%}.shot img{display:block;width:100%;max-width:980px;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.06)}.shot figcaption{margin-top:8px;font-size:13px;color:var(--fg-3)}
 .shot-ph{margin:18px 0 22px;padding:28px 16px;border:2px dashed var(--line);border-radius:10px;color:var(--fg-3);text-align:center;font-size:14px;max-width:980px}.shot-ph small{display:block;margin-top:4px;font-size:12px;opacity:.7}
 .fields{counter-reset:f;list-style:none;padding:0;margin:14px 0 24px;max-width:980px}.fields>li{counter-increment:f;position:relative;padding:10px 0 10px 44px;border-top:1px solid var(--line)}.fields>li:last-child{border-bottom:1px solid var(--line)}.fields>li::before{content:counter(f);position:absolute;left:4px;top:10px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}.fields>li b:first-child{display:inline-block;margin-right:6px}.fields>li p{margin:4px 0 0}.fields>li ul{margin:6px 0 0;padding-left:18px}.fields>li li{margin:2px 0}
@@ -226,9 +227,64 @@ h4{margin-top:22px}
 <div class="scrim" id="scrim"></div>
 <div class="shell">
   <nav class="sidenav" id="sidenav"><div class="nav-close"><span>목차</span><button type="button" id="navclose">닫기</button></div><div class="nav-group nav-before"><h4><a href="ch-1.html" data-page="ch-1.html">시작하기 전에</a></h4><ul><li><a href="s-1-1.html" data-page="s-1-1.html">리토스는 무엇을 하나요</a></li><li><a href="s-1-2.html" data-page="s-1-2.html">메뉴 둘러보기</a></li><li><a href="s-1-3.html" data-page="s-1-3.html">가입부터 발송 가능까지</a></li><li><a href="s-1-4.html" data-page="s-1-4.html">계정 상태</a></li></ul></div><div class="nav-group nav-steps"><h4><a href="ch-2.html" data-page="ch-2.html">리토스 시작하기 · 7단계</a></h4><ul><li><a href="s-2-1.html" data-page="s-2-1.html"><i>1</i>설정하기</a></li><li><a href="s-2-2.html" data-page="s-2-2.html"><i>2</i>퍼널 분석과 LTV 분석 확인하기</a></li><li><a href="s-2-3.html" data-page="s-2-3.html"><i>3</i>아하모먼트와 고객 행동 분석 확인하기</a></li><li><a href="s-2-4.html" data-page="s-2-4.html"><i>4</i>캠페인 만들고 콘텐츠 등록하기</a></li><li><a href="s-2-5.html" data-page="s-2-5.html"><i>5</i>저니 매트릭스 보드에서 켜고 끄고, 순서 정하기</a></li><li><a href="s-2-6.html" data-page="s-2-6.html"><i>6</i>발송하고 결과 확인하기</a></li><li><a href="s-2-7.html" data-page="s-2-7.html"><i>7</i>최적화 운영하기</a></li></ul></div><div class="nav-group nav-ref"><h4>자세히 보기</h4></div><div class="nav-group"><h4><a href="ch-3.html" data-page="ch-3.html">3. 콘텐츠 규격</a></h4><ul><li><a href="s-3-1.html" data-page="s-3-1.html">카카오 브랜드메시지 — 어떤 유형으로 만들까</a></li><li><a href="s-3-2.html" data-page="s-3-2.html">카카오 알림톡</a></li><li><a href="s-3-3.html" data-page="s-3-3.html">취소선 넣기</a></li><li><a href="s-3-4.html" data-page="s-3-4.html">개인화 변수 전체 목록</a></li></ul></div><div class="nav-group"><h4><a href="ch-4.html" data-page="ch-4.html">4. 성과 화면</a></h4><ul><li><a href="s-4-1.html" data-page="s-4-1.html">대시보드</a></li><li><a href="s-4-2.html" data-page="s-4-2.html">리포트</a></li><li><a href="s-4-3.html" data-page="s-4-3.html">퍼널 분석</a></li><li><a href="s-4-4.html" data-page="s-4-4.html">LTV 분석</a></li><li><a href="s-4-5.html" data-page="s-4-5.html">지표 용어</a></li></ul></div><div class="nav-group"><h4><a href="ch-5.html" data-page="ch-5.html">5. 요금과 결제</a></h4><ul><li><a href="s-5-1.html" data-page="s-5-1.html">요금제</a></li><li><a href="s-5-2.html" data-page="s-5-2.html">충전금</a></li><li><a href="s-5-3.html" data-page="s-5-3.html">결제 내역과 명세서</a></li></ul></div><div class="nav-group"><h4><a href="ch-6.html" data-page="ch-6.html">6. 자주 묻는 질문</a></h4><ul><li><a href="s-6.html" data-page="s-6.html">자주 묻는 질문</a></li></ul></div></nav>
-  <main><section id="s-4-1"><div class="sec-top"><p class="sec-kicker">4. 성과 화면 · 4-1</p><a class="anchor" href="#" data-copy>이 페이지 주소 복사</a></div><h2>대시보드</h2><p class="backlinks">여기로 온 곳 <a href="s-2-6.html">STEP 6 · 발송하고 결과 확인하기</a></p><p>어제 하루를 한 화면에서 봅니다. 기본은 <strong>기여 기간 D0 / 어제</strong>입니다.</p>
-<p>LTV 지표는 D0~D7까지 보이고, 어느 날짜 기준인지 같이 나옵니다. 예를 들어 1월 9일에 보면 1월 1일 기준 숫자가 완성돼 있어서 「1월 1일 기준」으로 표시됩니다. <strong>자세히 보기</strong>를 누르면 LTV 일간 지표로 갑니다.</p>
-<div class="pager"><a class="prev" href="s-3-4.html"><span>← 이전</span><b>개인화 변수 전체 목록</b></a><a class="next" href="s-4-2.html"><span>다음 →</span><b>리포트</b></a></div></section></main>
+  <main><section id="s-4-1"><div class="sec-top"><p class="sec-kicker">4. 성과 화면 · 4-1</p><a class="anchor" href="#" data-copy>이 페이지 주소 복사</a></div><h2>대시보드</h2><p class="backlinks">여기로 온 곳 <a href="s-2-6.html">STEP 6 · 발송하고 결과 확인하기</a></p><p><strong>어제 하루를 한 화면에서 봅니다.</strong> 처음 열면 기여 기간 D0, 날짜는 어제입니다. 위에서부터 다섯 블록입니다.</p>
+<p><strong>1. 핵심 숫자 8개</strong> — 카드마다 숫자와 함께 <strong>전일 대비 · 전주 대비</strong> 증감(↑↓)이 붙습니다.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>카드</th>
+<th>뜻</th>
+<th>이렇게 읽으세요</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>CRM 매출</strong></td>
+<td>어제 보낸 콘텐츠와 연결된 매출</td>
+<td>가장 먼저 보는 숫자. 전주 대비로 추세를 봅니다</td>
+</tr>
+<tr>
+<td><strong>객단가</strong></td>
+<td>구매 1건당 평균 금액</td>
+<td>갑자기 떨어지면 저가 상품 쿠폰이 많이 나간 것</td>
+</tr>
+<tr>
+<td><strong>오디언스 수</strong></td>
+<td>어제 콘텐츠를 보낼 수 있었던 고객 수</td>
+<td>0이거나 급감하면 연동 문제</td>
+</tr>
+<tr>
+<td><strong>오픈 수</strong></td>
+<td>콘텐츠를 연 횟수</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>구매 수</strong></td>
+<td>구매 완료 건수</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>발송 수</strong></td>
+<td>보내기 요청이 성공한 건수</td>
+<td><strong>0이면 문제입니다.</strong> 캠페인 OFF, 검수 미통과, 콘텐츠 없음 중 하나 → 6</td>
+</tr>
+<tr>
+<td><strong>오픈 전환율</strong></td>
+<td>발송 대비 연 비율</td>
+<td>콘텐츠 제목·이미지의 힘. 평소보다 크게 떨어지면 콘텐츠 리포트에서 어느 콘텐츠인지 봅니다</td>
+</tr>
+<tr>
+<td><strong>구매 전환율</strong></td>
+<td>연 사람 대비 산 비율</td>
+<td>콘텐츠 내용·혜택의 힘</td>
+</tr>
+</tbody></table></div>
+<p><strong>2. 주요 지표 그래프</strong> — 위 숫자들을 날짜별 선으로 봅니다. 탭을 눌러 CRM 매출 / 객단가, 오디언스 수 / 발송 수, 오픈 수 / 오픈 전환율, 구매 수 / 구매 전환율을 바꿔 봅니다. <strong>통합</strong>은 카카오·문자 채널을 합친 값입니다.</p>
+<p><strong>3. 퍼널 지표</strong> — 7단계마다 고객 수와 전일 대비 변동(%)을 막대로 보여줍니다. 지표 탭(오디언스 수 · 발송 수 · 오픈 수 · 구매 수 · 객단가 · CRM 매출)을 바꾸면 막대가 그 지표로 바뀝니다. 분석 &gt; 퍼널의 요약판입니다. → <a class="xref" href="s-4-3.html">4-3 퍼널 분석</a></p>
+<p><strong>4. LTV</strong> — 확정된 LTV 숫자와 <strong>어느 날짜 기준인지</strong>가 같이 나옵니다. LTV는 한 달치가 다 쌓여야 확정되기 때문에, 오늘 보는 숫자는 며칠 전 기준입니다. 예를 들어 「2026.10.01 기준」이면 10월 1일까지 쌓인 숫자입니다. → <a class="xref" href="s-4-4.html">4-4 LTV 분석</a></p>
+<p><strong>5. 캠페인 리포트 — 상위 캠페인</strong> — 어제 구매 수 기준 상위 5개 캠페인과 그 객단가 · CRM 매출입니다. 어떤 캠페인이 돈을 벌고 있는지 매일 여기서 보입니다.</p>
+<p>각 블록의 <strong>자세히 보기</strong>를 누르면 해당 메뉴로 갑니다.</p>
+<div class="note note-tip"><span class="note-label">팁</span><div class="note-body"><p><strong>매일 아침 30초 루틴</strong> — 발송 수가 0이 아닌지 → CRM 매출이 전주 대비 어떤지 → 상위 캠페인 5개가 지난주와 같은지. 이 세 가지만 보면 됩니다. 이상하면 리포트로 내려갑니다.</p>
+</div></div><div class="pager"><a class="prev" href="s-3-4.html"><span>← 이전</span><b>개인화 변수 전체 목록</b></a><a class="next" href="s-4-2.html"><span>다음 →</span><b>리포트</b></a></div></section></main>
 </div>
 <button type="button" class="backbtn" id="backbtn" hidden>← 이전 페이지로</button>
 <script>

@@ -193,6 +193,7 @@ body.searching .nores.show{display:block}
 .results .none{padding:10px 12px;color:var(--fg-3);font-size:13px}
 .search{position:relative}
 h3{margin-top:30px}
+details.more{margin:18px 0 24px;border:1px solid var(--line);border-radius:10px;background:#fafbfd;max-width:980px}details.more summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--fg-2);list-style:none}details.more summary::before{content:"▸ ";color:var(--accent)}details.more[open] summary::before{content:"▾ "}details.more summary::-webkit-details-marker{display:none}details.more>*:not(summary){margin-left:16px;margin-right:16px}details.more>ol{padding-left:36px;margin-bottom:14px}details.more li{margin:6px 0}details.more>p{margin-top:4px}
 .shot{margin:18px 0 22px;max-width:100%}.shot img{display:block;width:100%;max-width:980px;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.06)}.shot figcaption{margin-top:8px;font-size:13px;color:var(--fg-3)}
 .shot-ph{margin:18px 0 22px;padding:28px 16px;border:2px dashed var(--line);border-radius:10px;color:var(--fg-3);text-align:center;font-size:14px;max-width:980px}.shot-ph small{display:block;margin-top:4px;font-size:12px;opacity:.7}
 .fields{counter-reset:f;list-style:none;padding:0;margin:14px 0 24px;max-width:980px}.fields>li{counter-increment:f;position:relative;padding:10px 0 10px 44px;border-top:1px solid var(--line)}.fields>li:last-child{border-bottom:1px solid var(--line)}.fields>li::before{content:counter(f);position:absolute;left:4px;top:10px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}.fields>li b:first-child{display:inline-block;margin-right:6px}.fields>li p{margin:4px 0 0}.fields>li ul{margin:6px 0 0;padding-left:18px}.fields>li li{margin:2px 0}
@@ -373,11 +374,11 @@ h4{margin-top:22px}
 </thead>
 <tbody><tr>
 <td><strong>매일</strong></td>
-<td>매일 보냅니다. <strong>하루 최대 3통</strong>까지 정할 수 있습니다. 2통이면 고객이 자기 퍼널 열에서 하루에 캠페인 두 개를 차례로 받습니다</td>
+<td>매일 보냅니다. <strong>하루 최대 3통</strong>까지 정할 수 있습니다</td>
 </tr>
 <tr>
 <td><strong>요일 선택</strong></td>
-<td>월요일부터 일요일까지 <strong>보낼 요일에 체크</strong>하고, 체크한 요일마다 <strong>그날 몇 통</strong>(1회부터)을 고릅니다. 예: 월·수·금에 체크하고 각 1회. 2회면 그날 캠페인 두 개를 받습니다</td>
+<td>월요일부터 일요일까지 <strong>보낼 요일에 체크</strong>하고, 체크한 요일마다 <strong>그날 몇 통</strong>(1회부터)을 고릅니다. 예: 월·수·금에 체크하고 각 1회</td>
 </tr>
 </tbody></table></div>
 <p>처음 권장값입니다. 리포트에서 차단·수신거부가 늘면 줄이고, 반응이 좋으면 늘립니다.</p>

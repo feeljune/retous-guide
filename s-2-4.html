@@ -193,6 +193,26 @@ body.searching .nores.show{display:block}
 .results .none{padding:10px 12px;color:var(--fg-3);font-size:13px}
 .search{position:relative}
 h3{margin-top:30px}
+.shot{margin:18px 0 22px;max-width:100%}.shot img{display:block;width:100%;max-width:980px;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.06)}.shot figcaption{margin-top:8px;font-size:13px;color:var(--fg-3)}
+.shot-ph{margin:18px 0 22px;padding:28px 16px;border:2px dashed var(--line);border-radius:10px;color:var(--fg-3);text-align:center;font-size:14px;max-width:980px}.shot-ph small{display:block;margin-top:4px;font-size:12px;opacity:.7}
+.fields{counter-reset:f;list-style:none;padding:0;margin:14px 0 24px;max-width:980px}.fields>li{counter-increment:f;position:relative;padding:10px 0 10px 44px;border-top:1px solid var(--line)}.fields>li:last-child{border-bottom:1px solid var(--line)}.fields>li::before{content:counter(f);position:absolute;left:4px;top:10px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}.fields>li b:first-child{display:inline-block;margin-right:6px}.fields>li p{margin:4px 0 0}.fields>li ul{margin:6px 0 0;padding-left:18px}.fields>li li{margin:2px 0}
+/* 가상 저니 매트릭스 보드 */
+.jmb{margin:16px 0 24px;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;max-width:980px}
+.jmb-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line);font-size:12.5px}
+.jmb-top .lab{color:var(--fg-3);margin-right:2px}.jmb-top .seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}.jmb-top .seg span{padding:3px 9px}.jmb-top .seg .on{background:var(--accent);color:#fff}.jmb-top .btn{margin-left:auto;background:var(--accent);color:#fff;padding:5px 11px;border-radius:7px;font-weight:600}
+.jmb-tabs{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12.5px}.jmb-tabs span{padding:4px 10px;border:1px solid var(--line);border-radius:6px;color:var(--fg-2)}.jmb-tabs .on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent);font-weight:700}
+.jmb-wrap{overflow-x:auto}.jmb table{border-collapse:collapse;width:100%;min-width:760px;font-size:12.5px}
+.jmb th{background:#f6f8fb;font-weight:600;color:var(--fg-2);padding:8px 6px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}.jmb th.l{text-align:left}
+.jmb td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}.jmb td.l{text-align:left}
+.jmb tr.total td{background:#f6f8fb;font-weight:700}
+.jmb .tg{display:inline-block;width:30px;height:16px;border-radius:9px;background:#cfd6e0;position:relative;vertical-align:middle}.jmb .tg::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:#fff}.jmb .tg.on{background:var(--accent)}.jmb .tg.on::after{left:16px}
+.jmb .fn{display:inline-block;padding:1px 7px;border-radius:5px;font-size:11.5px;font-weight:600;border:1px solid}
+.jmb .f1{color:#b7791f;border-color:#f0d58c;background:#fff8e6}.jmb .f2{color:#2f855a;border-color:#9ae6b4;background:#effaf3}.jmb .f3{color:#2b6cb0;border-color:#90cdf4;background:#ebf8ff}.jmb .f4{color:#6b46c1;border-color:#d6bcfa;background:#f5f0ff}.jmb .f5{color:#b83280;border-color:#fbb6ce;background:#fff5f9}.jmb .f6{color:#c05621;border-color:#fbd38d;background:#fffaf0}.jmb .f7{color:#742a2a;border-color:#feb2b2;background:#fff5f5}
+.jmb .c0{color:#b8c0cc}.jmb .c1{background:#e8eefc}.jmb .c2{background:#c9d8fa}.jmb .c3{background:#9db9f5;color:#0b2a6b}.jmb .c4{background:#5c88e8;color:#fff}.jmb .c5{background:#1f4fc4;color:#fff}
+.jmb .mt{position:relative}.jmb .mt::after{content:"메인";position:absolute;right:3px;top:2px;font-size:9px;color:var(--accent);font-weight:700}
+.jmb .off{color:#b8c0cc}.jmb .off small{display:block;font-size:9.5px}
+.jmb-foot{padding:10px 14px;font-size:12px;color:var(--fg-3);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px}.jmb-foot i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px}
+.jmb-legend{margin:0 0 22px;padding:0;list-style:none;font-size:14px;max-width:980px}.jmb-legend li{padding:6px 0 6px 30px;position:relative}.jmb-legend li b.n{position:absolute;left:0;top:6px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center}
 h3.menu{margin-top:12px;padding:14px 18px;background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:10px;font-size:17px}
 .menu-end{margin:30px 0 0;padding:10px 14px;border:1px dashed var(--line);border-radius:8px;color:var(--fg-3);font-size:13.5px;max-width:68ch}
 .menu-end::before{content:"✔ ";color:var(--accent);font-weight:700}
@@ -206,169 +226,92 @@ h4{margin-top:22px}
 <div class="scrim" id="scrim"></div>
 <div class="shell">
   <nav class="sidenav" id="sidenav"><div class="nav-close"><span>목차</span><button type="button" id="navclose">닫기</button></div><div class="nav-group nav-before"><h4><a href="ch-1.html" data-page="ch-1.html">시작하기 전에</a></h4><ul><li><a href="s-1-1.html" data-page="s-1-1.html">리토스는 무엇을 하나요</a></li><li><a href="s-1-2.html" data-page="s-1-2.html">메뉴 둘러보기</a></li><li><a href="s-1-3.html" data-page="s-1-3.html">가입부터 발송 가능까지</a></li><li><a href="s-1-4.html" data-page="s-1-4.html">계정 상태</a></li></ul></div><div class="nav-group nav-steps"><h4><a href="ch-2.html" data-page="ch-2.html">리토스 시작하기 · 7단계</a></h4><ul><li><a href="s-2-1.html" data-page="s-2-1.html"><i>1</i>설정하기</a></li><li><a href="s-2-2.html" data-page="s-2-2.html"><i>2</i>퍼널 분석과 LTV 분석 확인하기</a></li><li><a href="s-2-3.html" data-page="s-2-3.html"><i>3</i>아하모먼트와 고객 행동 분석 확인하기</a></li><li><a href="s-2-4.html" data-page="s-2-4.html"><i>4</i>캠페인 만들고 콘텐츠 등록하기</a></li><li><a href="s-2-5.html" data-page="s-2-5.html"><i>5</i>저니 매트릭스 보드에서 켜고 끄고, 순서 정하기</a></li><li><a href="s-2-6.html" data-page="s-2-6.html"><i>6</i>발송하고 결과 확인하기</a></li><li><a href="s-2-7.html" data-page="s-2-7.html"><i>7</i>최적화 운영하기</a></li></ul></div><div class="nav-group nav-ref"><h4>자세히 보기</h4></div><div class="nav-group"><h4><a href="ch-3.html" data-page="ch-3.html">3. 콘텐츠 규격</a></h4><ul><li><a href="s-3-1.html" data-page="s-3-1.html">어떤 유형으로 만들까</a></li><li><a href="s-3-2.html" data-page="s-3-2.html">카카오 브랜드메시지 6종</a></li><li><a href="s-3-3.html" data-page="s-3-3.html">카카오 알림톡</a></li><li><a href="s-3-4.html" data-page="s-3-4.html">취소선 넣기</a></li><li><a href="s-3-5.html" data-page="s-3-5.html">개인화 변수 전체 목록</a></li></ul></div><div class="nav-group"><h4><a href="ch-4.html" data-page="ch-4.html">4. 성과 화면</a></h4><ul><li><a href="s-4-1.html" data-page="s-4-1.html">대시보드</a></li><li><a href="s-4-2.html" data-page="s-4-2.html">리포트</a></li><li><a href="s-4-3.html" data-page="s-4-3.html">퍼널 분석</a></li><li><a href="s-4-4.html" data-page="s-4-4.html">LTV 분석</a></li><li><a href="s-4-5.html" data-page="s-4-5.html">지표 용어</a></li></ul></div><div class="nav-group"><h4><a href="ch-5.html" data-page="ch-5.html">5. 요금과 결제</a></h4><ul><li><a href="s-5-1.html" data-page="s-5-1.html">요금제</a></li><li><a href="s-5-2.html" data-page="s-5-2.html">충전금</a></li><li><a href="s-5-3.html" data-page="s-5-3.html">결제 내역과 명세서</a></li></ul></div><div class="nav-group"><h4><a href="ch-6.html" data-page="ch-6.html">6. 자주 묻는 질문</a></h4><ul><li><a href="s-6.html" data-page="s-6.html">자주 묻는 질문</a></li></ul></div></nav>
-  <main><section id="s-2-4"><div class="sec-top"><p class="sec-kicker">STEP 4</p><a class="anchor" href="#" data-copy>이 페이지 주소 복사</a></div><div class="step-head"><span class="step-n">4</span><h2>캠페인 만들고 콘텐츠 등록하기</h2></div><p class="backlinks">여기로 온 곳 <a href="s-2-1.html">STEP 1 · 설정하기</a> <a href="s-2-5.html">STEP 5 · 저니 매트릭스 보드에서 켜고 끄고, 순서 정하기</a></p><div class="pagetoc"><b>이 페이지</b><a href="#저니-매트릭스-보드란">저니 매트릭스 보드란</a><a href="#캠페인-만들기">캠페인 만들기</a><a href="#콘텐츠-만들기">콘텐츠 만들기</a><a href="#알림톡은-검수를-기다립니다">알림톡은 검수를 기다립니다</a><a href="#콘텐츠는-3개-이상">콘텐츠는 3개 이상</a></div><h3 id="저니-매트릭스-보드란">저니 매트릭스 보드란</h3><p>리토스의 가운데 화면입니다. 캠페인을 만들고, 켜고, 순서를 정하고, 결과를 보는 일이 전부 여기서 일어납니다.</p>
-<p><strong>가로는 퍼널 7단계, 세로는 캠페인</strong>입니다. 고객 한 명은 이 판의 <strong>한 칸</strong>에 있습니다. 어느 단계에 있는지(가로)와 어떤 캠페인 조건에 맞는지(세로)가 만나는 자리입니다. 고객은 매일 칸을 옮깁니다. 가입하면 온보딩 칸에서 시작해서, 사면 구매 칸으로, 한동안 안 오면 이탈 칸으로 갑니다.</p>
-<div class="tablewrap"><table>
-<thead>
-<tr>
-<th></th>
-<th>뜻</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>한 줄(캠페인)</strong></td>
-<td>&quot;이런 고객에게 이런 콘텐츠를 보낸다&quot;는 규칙 하나. 예: 「장바구니 3일 미구매 리마인드」</td>
-</tr>
-<tr>
-<td><strong>한 칸</strong></td>
-<td>그 캠페인이 그 단계 고객에게 낸 성과(발송·오픈·구매). 색이 진하면 켜진 것</td>
-</tr>
-<tr>
-<td><strong>세로 순서</strong></td>
-<td>발송 우선순위. 한 고객이 여러 캠페인에 걸리면 위에 있는 것부터 받습니다. 자동으로 바뀌지 않고 직접 옮깁니다</td>
-</tr>
-</tbody></table></div>
-<p>저니 매트릭스 보드의 목표는 하나입니다. <strong>고객을 구매·재구매 칸으로 옮기는 것.</strong> 온보딩·탐색·고려에 있는 고객에게는 첫 구매를, 구매에 있는 고객에게는 재구매를, 이탈에 있는 고객에게는 복귀를 겨냥한 캠페인을 줄줄이 놓습니다. 2단계 퍼널 분석에서 고객이 몰린 단계가 첫 줄이 됩니다.</p>
-<p>캠페인과 콘텐츠는 이런 관계입니다.</p>
-<div class="tablewrap"><table>
-<thead>
-<tr>
-<th></th>
-<th>무엇</th>
-<th>정하는 것</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>캠페인</strong></td>
-<td>&quot;어떤 고객에게, 어떤 방식으로 보낼지&quot;의 단위</td>
-<td>어느 퍼널, 어떤 조건, 예약/실시간, 무조건/일반</td>
-</tr>
-<tr>
-<td><strong>콘텐츠</strong></td>
-<td>캠페인 안에서 실제로 나가는 한 통</td>
-<td>채널(알림톡/브랜드메시지), 글, 이미지, 버튼, 며칠 뒤에 보낼지</td>
-</tr>
-</tbody></table></div>
-<p>캠페인 하나에 콘텐츠를 여러 개 넣습니다. 캠페인은 <strong>최대 100개</strong>입니다.</p>
-<p><strong>처음에는 리토스가 대신 넣어 드립니다.</strong> 3단계 분석을 바탕으로 리토스가 초기 캠페인과 콘텐츠를 한꺼번에 등록합니다. 고객사는 저니 매트릭스 보드에서 내용을 확인하고, 문구나 조건이 우리 브랜드에 맞는지 보면 됩니다. 아래는 직접 추가하거나 고칠 때의 방법입니다.</p>
-<h3 id="캠페인-만들기">캠페인 만들기</h3><p>저니 매트릭스 보드 오른쪽 위 <strong>New Campaign</strong>을 누르면 폼이 열립니다. 위에서부터 채웁니다.</p>
-<p><strong>1. 캠페인 명 · 설명</strong> — 나중에 저니 매트릭스 보드에서 알아볼 수 있게 씁니다. 예: 「장바구니 3일 미구매 리마인드」.</p>
-<p><strong>2. 발송 우선순위</strong> — <code>무조건 발송</code> 또는 <code>일반 발송</code>.</p>
+  <main><section id="s-2-4"><div class="sec-top"><p class="sec-kicker">STEP 4</p><a class="anchor" href="#" data-copy>이 페이지 주소 복사</a></div><div class="step-head"><span class="step-n">4</span><h2>캠페인 만들고 콘텐츠 등록하기</h2></div><p class="backlinks">여기로 온 곳 <a href="s-2-1.html">STEP 1 · 설정하기</a> <a href="s-2-5.html">STEP 5 · 저니 매트릭스 보드에서 켜고 끄고, 순서 정하기</a></p><div class="pagetoc"><b>이 페이지</b><a href="#저니-매트릭스-보드란">저니 매트릭스 보드란</a><a href="#캠페인-만들기">캠페인 만들기</a><a href="#콘텐츠-만들기">콘텐츠 만들기</a><a href="#알림톡은-검수를-기다립니다">알림톡은 검수를 기다립니다</a><a href="#콘텐츠는-3개-이상">콘텐츠는 3개 이상</a></div><p><strong>처음 시작할 때는 리토스가 직접 등록해 드립니다.</strong> 3단계 아하모먼트 분석과 그동안 쌓인 노하우를 바탕으로, 리토스가 첫 캠페인과 콘텐츠를 한꺼번에 등록합니다. 고객사는 저니 매트릭스 보드에서 내용을 보고, 문구와 조건이 우리 브랜드에 맞는지만 확인하면 됩니다. 그 뒤에 직접 추가하거나 고치는 방법이 이 페이지입니다.</p>
+<h3 id="저니-매트릭스-보드란">저니 매트릭스 보드란</h3><p>리토스의 가운데 화면입니다. 캠페인을 만들고, 켜고, 순서를 정하고, 결과를 보는 일이 전부 여기서 일어납니다. 아래는 가상의 가게로 그려 본 모습입니다.</p>
+<div class="jmb" aria-label="저니 매트릭스 보드 예시 (가상 데이터)">
+  <div class="jmb-top">
+    <span class="lab">기여 기간</span><span class="seg"><span class="on">D 0</span><span>D + 1</span></span>
+    <span class="lab" style="margin-left:8px">기간 선택</span><span class="seg"><span class="on">최근 1일</span><span>최근 7일</span><span>최근 30일</span></span>
+    <span class="btn">+ New Campaign</span>
+  </div>
+  <div class="jmb-tabs"><span class="on">발송 수</span><span>오픈 전환율</span><span>오픈 수</span><span>구매 전환율</span><span>구매 수</span><span>객단가</span><span>CRM 매출</span></div>
+  <div class="jmb-wrap"><div class="tablewrap"><table>
+    <thead>
+      <tr><th>ON/OFF</th><th>메인 타겟<br>퍼널</th><th class="l">캠페인 명</th><th>무조건<br>발송</th><th>순서<br>변경</th><th>합계</th><th>온보딩</th><th>탐색</th><th>고려</th><th>구매</th><th>재구매</th><th>초기 이탈</th><th>장기 이탈</th></tr>
+    </thead>
+    <tbody>
+      <tr class="total"><td colspan="5" class="l">전체</td><td>2,355</td><td>120</td><td>340</td><td>290</td><td>155</td><td>150</td><td>420</td><td>880</td></tr>
+      <tr><td><i class="tg on"></i></td><td><span class="fn f1">온보딩</span></td><td class="l">가입 환영 · 첫 구매 쿠폰</td><td>O</td><td>≡</td><td>120</td><td class="c2 mt">120</td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td></tr>
+      <tr><td><i class="tg on"></i></td><td><span class="fn f2">탐색</span></td><td class="l">첫 구매 상품 추천</td><td>X</td><td>≡</td><td>420</td><td class="off">-<small>OFF</small></td><td class="c3 mt">340</td><td class="c1">80</td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td></tr>
+      <tr><td><i class="tg on"></i></td><td><span class="fn f3">고려</span></td><td class="l">장바구니 3일 미구매 리마인드</td><td>X</td><td>≡</td><td>210</td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="c2 mt">210</td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td></tr>
+      <tr><td><i class="tg on"></i></td><td><span class="fn f4">구매</span></td><td class="l">첫 구매 감사 · 사용법 안내</td><td>O</td><td>≡</td><td>95</td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="c1 mt">95</td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td></tr>
+      <tr><td><i class="tg on"></i></td><td><span class="fn f5">재구매</span></td><td class="l">재구매 주기 리마인드</td><td>X</td><td>≡</td><td>210</td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="c1">60</td><td class="c2 mt">150</td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td></tr>
+      <tr><td><i class="tg on"></i></td><td><span class="fn f6">초기 이탈</span></td><td class="l">초기 이탈 복귀 쿠폰</td><td>X</td><td>≡</td><td>420</td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="c4 mt">420</td><td class="off">-<small>OFF</small></td></tr>
+      <tr><td><i class="tg on"></i></td><td><span class="fn f7">장기 이탈</span></td><td class="l">장기 이탈 복귀 · 신상품 소식</td><td>X</td><td>≡</td><td>880</td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="c5 mt">880</td></tr>
+      <tr><td><i class="tg"></i></td><td><span class="fn f3">고려</span></td><td class="l">찜 후 미구매 (준비 중)</td><td>X</td><td>≡</td><td>0</td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="c0 mt">-</td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td><td class="off">-<small>OFF</small></td></tr>
+    </tbody>
+  </table></div></div>
+  <div class="jmb-foot"><span>가상 데이터로 그린 예시입니다. 실제 화면은 고객사 캠페인에 따라 다릅니다.</span><span><i style="background:#e8eefc"></i>적음</span><span><i style="background:#5c88e8"></i>많음</span><span><i style="background:#1f4fc4"></i>가장 많음</span></div>
+</div>
+
+
+<p><strong>가로는 고객의 단계(퍼널 7칸), 세로는 캠페인</strong>입니다. 한 줄이 캠페인 하나, 한 칸이 &quot;그 캠페인이 그 단계 고객에게 낸 결과&quot;입니다. 숫자가 많을수록 색이 진합니다.</p>
 <ul>
-<li><strong>일반 발송</strong>이 기본입니다. 1단계에서 정한 발송 주기 안에서 나갑니다.</li>
-<li><strong>무조건 발송</strong>은 주기와 상관없이 나갑니다. 주문 확인, 쿠폰 만료 안내처럼 꼭 가야 하는 것에만 쓰세요. 「알림」 콘텐츠(주문·배송 안내 등)는 무조건 발송 캠페인에서만 만들 수 있습니다. 「광고」 콘텐츠는 어느 쪽에서도 됩니다.</li>
+<li><strong>ON/OFF</strong> — 캠페인 전체를 켜고 끕니다. 꺼진 줄은 아무것도 안 나갑니다.</li>
+<li><strong>메인 타겟 퍼널</strong> — 이 캠페인이 겨냥하는 단계. 그 칸에는 작게 「메인」이 붙고, 항상 켜져 있습니다.</li>
+<li><strong>캠페인 명 · 무조건 발송(O/X) · 순서 변경(≡)</strong> — 이름, 무조건 발송인지, 그리고 줄을 끌어서 순서를 바꾸는 손잡이. <strong>위에 있는 캠페인이 먼저 나갑니다.</strong></li>
+<li><strong>합계와 7칸</strong> — 위의 탭(발송 수 · 오픈 수 · 구매 수 · CRM 매출 …)에서 고른 지표를 칸마다 보여줍니다. 칸 아래 OFF는 그 단계에는 안 보낸다는 뜻이고, 여기서 바로 켤 수 있습니다.</li>
+<li><strong>기여 기간 D0 / D+1 · 기간 선택</strong> — 숫자를 &quot;보낸 당일 결과&quot;로 볼지 &quot;다음 날까지&quot;로 볼지, 최근 며칠 치를 볼지. 뜻은 → <a class="xref" href="s-4-3.html">4-3</a></li>
 </ul>
-<p>→ <a class="xref" href="s-2-1.html">2-1</a></p>
-<p><strong>3. 발송 유형</strong> — <code>예약 발송</code> 또는 <code>실시간 발송</code>. 처음에는 아무것도 선택돼 있지 않습니다.</p>
+<p>저니 매트릭스 보드의 목표는 하나입니다. <strong>고객을 구매 · 재구매 칸으로 옮기는 것.</strong> 온보딩·탐색·고려 고객에게는 첫 구매를, 구매 고객에게는 재구매를, 이탈 고객에게는 복귀를 겨냥한 캠페인을 줄줄이 놓습니다.</p>
+<p><strong>캠페인과 콘텐츠의 관계</strong> — 캠페인은 &quot;어떤 고객에게 보낼지&quot;(단계 · 조건 · 보내는 방식), 콘텐츠는 &quot;실제로 나가는 한 통&quot;(채널 · 글 · 이미지 · 버튼 · 며칠 뒤에)입니다. 캠페인 하나에 콘텐츠를 여러 개 넣고, 캠페인은 최대 100개까지입니다.</p>
+<p>직접 등록하는 방법은 아래와 같습니다. <strong>캠페인을 먼저 만들고, 그 안에 콘텐츠를 넣습니다.</strong></p>
+<h3 id="캠페인-만들기">캠페인 만들기</h3><p>저니 매트릭스 보드 오른쪽 위 <strong>+ New Campaign</strong>을 누르면 아래 화면이 열립니다. 위에서부터 순서대로 채웁니다.</p>
+
+
+<ol class="fields">
+<li><b>캠페인 명</b> 저니 매트릭스 보드에 보이는 이름입니다. 나중에 알아볼 수 있게 씁니다. 예: 「장바구니 3일 미구매 리마인드」</li>
+<li><b>캠페인 설명</b> 메모입니다. 왜 만들었는지 한 줄 적어 두면 좋습니다.</li>
+<li><b>발송 우선 순위</b> <b>일반 발송</b>이 기본입니다. 1단계 발송 주기 안에서 나갑니다. <b>무조건 발송</b>은 주기와 상관없이 나가니, 주문 확인·쿠폰 만료처럼 꼭 가야 하는 것에만 씁니다. 둘의 차이 → <a class="xref" href="s-2-1.html">2-1</a></li>
+<li><b>발송 유형</b> <b>예약 발송</b>은 매일 정해진 시각에 조건에 맞는 고객을 모아 보냅니다. 고르면 오른쪽에 <b>발송 시각</b>(오전/오후 · 시 · 분)이 나오고, 1단계에서 정한 발송 시간 안이어야 합니다. <b>실시간 발송</b>은 고객이 가입·주문 같은 행동을 한 직후에 보냅니다. 무조건 발송일 때만 고를 수 있습니다.</li>
+<li><b>메인 타겟 퍼널</b> 이 캠페인이 겨냥하는 단계 <b>하나</b>를 고릅니다. 실시간 발송이면 「전체」로 정해져 있습니다.</li>
+<li><b>타게팅</b> 단계를 고르면 그 단계에서 쓸 수 있는 조건 목록이 나옵니다. <b>1단계에서 다운로드한 조건만</b> 보입니다. 안 보이면 설정 > 타게팅 조건에서 다운로드하세요. 실시간 발송이면 조건 대신 회원 가입 · 장바구니 담기 · 주문 접수 같은 <b>이벤트 목록</b>이 나옵니다.</li>
+<li><b>노출 퍼널</b> 메인 타겟 말고 <b>추가로</b> 보낼 단계에 체크합니다. 예: 메인이 고려인 장바구니 캠페인을 탐색 고객에게도 보내고 싶을 때. 나중에 저니 매트릭스 보드에서 켜고 끌 수 있습니다. 실시간 발송이면 고를 수 없습니다.</li>
+<li><b>세부 조건</b> 고른 타게팅 조건의 설명이 자동으로 보입니다. 읽고 확인만 하면 됩니다.</li>
+<li><b>예상 모수 확인하기</b> 지금 조건으로 몇 명에게 나갈지 보여줍니다. <b>캠페인을 켜기 전에 꼭 한 번 누르세요.</b> 0명이거나 너무 많으면 조건을 다시 봅니다.</li>
+<li><b>생성</b> 캠페인이 만들어지고 상세 화면으로 갑니다. 이때는 아직 <b>OFF</b>이고 콘텐츠도 없습니다.</li>
+</ol>
+
+<div class="note note-note"><span class="note-label">참고</span><div class="note-body"><p>메인 타겟 퍼널은 항상 ON이고 끌 수 없습니다. 노출 퍼널은 저니 매트릭스 보드에서 켜고 끕니다. <strong>콘텐츠는 고객이 있는 단계가 ON일 때만 나갑니다.</strong></p>
+</div></div><h3 id="콘텐츠-만들기">콘텐츠 만들기</h3><p>캠페인 상세 화면 오른쪽 위 <strong>+ New Content</strong>를 누르면 아래 화면이 열립니다. 콘텐츠는 캠페인 안에서만 만들 수 있습니다.</p>
+
+
+<ol class="fields">
+<li><b>컨텐츠 명</b> 저니 매트릭스 보드와 리포트에 보이는 이름입니다. 예: 「장바구니 리마인드 D+1 A안」</li>
+<li><b>발송 유형</b> 캠페인에서 정한 것(예약/실시간)이 자동으로 보입니다. 여기서는 못 바꿉니다.</li>
+<li><b>메시지 목적</b> <b>알림</b>은 주문·배송·쿠폰 만료처럼 꼭 도착해야 하는 안내입니다. 알림톡으로 나가고 카카오 검수를 받으며, 우리 채널을 추가하지 않은 고객에게도 갑니다. <b>광고</b>는 추천·할인·이벤트입니다. 브랜드메시지로 나가고 검수 없이 바로 나가지만, 채널 친구에게만 갑니다. 일반 발송 캠페인에서는 광고만 고를 수 있습니다.</li>
+<li><b>Delay Time</b> 조건에 맞은 날부터 <b>며칠 뒤에</b> 보낼지입니다. 예약 발송은 1·3·5·7일 후 중 고르거나 직접 선택으로 1\~180일, 실시간 발송은 3·5·10·30·60분 후 중 고르거나 직접 선택으로 5\~60분입니다. 콘텐츠마다 따로 정하고, 캠페인 상세 목록에 <code>D + 1</code>처럼 표시됩니다.</li>
+<li><b>발송 기간</b> <b>무제한</b>이 기본입니다. 시즌 캠페인처럼 기간이 정해져 있으면 <b>직접 설정</b>에서 시작일과 종료일을 고릅니다.</li>
+<li><b>채널</b> 메시지 목적에 따라 알림톡 또는 브랜드메시지가 나옵니다. 고르면 그 아래에 <b>유형</b>(모양)과 입력 칸이 나타납니다.</li>
+</ol>
+
+
+
+<ol class="fields" start="7">
+<li><b>유형</b> 알림톡은 메시지 유형(기본형 · 부가정보형 · 채널추가형 · 복합형)과 강조 유형(이미지형 · 강조표기형 · 아이템리스트형)을 고릅니다. 브랜드메시지는 6가지 모양(기본 텍스트 이미지형 · 와이드 이미지형 · 와이드 리스트형 · 캐러셀 피드형 · 커머스형 · 캐러셀 커머스형) 중 하나입니다. 어느 모양이 맞는지 → <a class="xref" href="s-3-1.html">3-1</a>, 글자수 규격 → <a class="xref" href="s-3-2.html">3-2</a> · 3-3</li>
+<li><b>내용 · 이미지 · 버튼</b> 유형에 맞는 칸이 나오고, 칸마다 글자수 한도가 표시됩니다. 버튼 링크에 한글은 못 씁니다. 가격에 줄을 긋고 싶으면 → <a class="xref" href="s-3-4.html">3-4</a></li>
+<li><b>변수 넣기</b> 내용 칸 옆 <b>변수 버튼</b>을 누르면 고객 이름, 장바구니 상품 이름, 쿠폰 이름 같은 것을 넣을 수 있습니다. <b>창에서 골라 넣어야</b> 하고 직접 타이핑하면 저장이 안 됩니다. <b>대체 문구</b>(예: 이름이 없으면 「고객」)를 꼭 넣으세요. 없으면 값이 없는 고객에게는 안 나갈 수 있습니다. 실시간 캠페인에서 이름은 <code>#{ordName}</code>입니다. 변수 전체 목록 → <a class="xref" href="s-3-5.html">3-5</a></li>
+<li><b>미리보기</b> 오른쪽에 입력하는 대로 보입니다. 카카오톡 규격 기준이라 실제 화면과 조금 다를 수 있습니다.</li>
+<li><b>테스트 발송</b> 필수 칸을 다 채우면 버튼이 켜집니다. 휴대폰 번호 11자리를 띄어쓰기 없이 넣고 <b>발송하기</b>. 캠페인이 꺼져 있어도 테스트는 됩니다. 안 오면 번호와, 그 번호가 우리 카카오 채널을 추가했는지 보세요.</li>
+<li><b>생성</b> 저장합니다. 빈 필수 칸이 있으면 어느 칸인지 표시됩니다. 임시로 두려면 <b>임시저장</b>입니다.</li>
+</ol>
+
+<div class="note note-warn"><span class="note-label">주의</span><div class="note-body"><p><strong>알림톡은 만드는 도중에는 테스트가 안 됩니다.</strong> 먼저 생성으로 저장하고, 캠페인 상세에서 수정으로 다시 열어야 테스트 버튼이 켜집니다. 그것도 카카오 검수를 통과해 발송 상태가 <code>발송 가능</code>일 때만 됩니다.</p>
+</div></div><p><strong>Delay Time으로 할 수 있는 두 가지</strong></p>
 <ul>
-<li><strong>예약 발송</strong> — 매일 정해진 시각에 조건에 맞는 고객을 모아 보냅니다. 고르면 <strong>발송 시각</strong>(오전/오후, 시, 분)을 넣습니다. 1단계 발송 시간 범위 안이어야 합니다. 며칠 뒤에 보낼지는 여기가 아니라 콘텐츠의 Delay Time에서 정합니다.</li>
-<li><strong>실시간 발송</strong> — 고객이 가입·주문 같은 행동을 하는 즉시 보냅니다. 고르면 발송 시각 칸이 사라집니다. <strong>무조건 발송 캠페인에서만</strong> 쓸 수 있습니다. 일반 발송을 고르면 발송 유형에 예약 발송만 남습니다.</li>
+<li><strong>순서대로 보내기</strong> — 한 캠페인에 D+1, D+3, D+7 콘텐츠를 넣으면 세 통이 차례로 갑니다. 신규 고객 환영 시리즈를 이렇게 만듭니다.</li>
+<li><strong>자동 A/B 테스트</strong> — Delay Time이 같은 콘텐츠를 여러 개 넣으면, 먼저 받은 고객들의 반응으로 이긴 콘텐츠 하나만 그 뒤 고객에게 나갑니다.</li>
 </ul>
-<p><strong>4. 메인 타겟 퍼널</strong> — 이 캠페인이 겨냥하는 단계 <strong>하나</strong>를 고릅니다. 온보딩 · 탐색 · 고려 · 구매 · 재구매 · 초기 이탈 · 장기 이탈 · 전체 중 하나입니다.</p>
-<ul>
-<li>실시간 발송이면 「전체」 하나뿐입니다.</li>
-</ul>
-<p><strong>5. 타게팅</strong> — 메인 타겟 퍼널을 고르면 그 퍼널에 쓸 수 있는 조건 목록이 나옵니다. <strong>목록에는 1단계에서 다운로드한 조건만 나옵니다.</strong> 안 보이면 설정 &gt; 타게팅 조건에서 다운로드했는지 보세요.</p>
-<ul>
-<li>예약 발송 예) 재구매 퍼널 → 「재구매 퍼널 대상 전체」 「단골인데 N일 재구매 끊김」 「어제 재구매 완료」</li>
-<li>실시간 발송이면 조건 대신 <strong>이벤트 목록</strong>이 나옵니다. 회원 가입 · 장바구니 상품 추가 · 주문 접수 · 입금 상태 변경 · 배송 상태 변경 · 취소/반품/환불 상태 변경 · 송장번호 변경 등 (카페24 기준 14가지)</li>
-</ul>
-<p>타게팅을 고르면 아래 <strong>세부 조건</strong>에 그 조건의 설명이 뜹니다.</p>
-<p><strong>6. 노출 퍼널</strong> — 메인 타겟 퍼널 말고 <strong>추가로</strong> 보여줄 단계를 여러 개 고릅니다. 예를 들어 메인이 「고려」인 장바구니 캠페인을 「탐색」 고객에게도 보내고 싶으면 탐색을 켭니다. 저니 매트릭스 보드에서 나중에 켜고 끌 수 있습니다. 실시간 발송이면 고를 수 없습니다.</p>
-<p>두 퍼널의 차이입니다.</p>
-<div class="tablewrap"><table>
-<thead>
-<tr>
-<th></th>
-<th>몇 개</th>
-<th>저니 매트릭스 보드에서</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>메인 타겟 퍼널</strong></td>
-<td>하나</td>
-<td>항상 ON. <strong>끌 수 없음</strong></td>
-</tr>
-<tr>
-<td><strong>노출 퍼널</strong></td>
-<td>여러 개</td>
-<td>켜고 끌 수 있음. 나중에 캠페인 수정에서도 바꿀 수 있음</td>
-</tr>
-</tbody></table></div>
-<p>메인 타겟 퍼널을 먼저 고르고, 노출 퍼널은 나머지 중에서 고릅니다. 「전체」도 고를 수 있습니다.</p>
-<p><strong>콘텐츠는 고객이 있는 퍼널이 ON일 때만 나갑니다.</strong> 조건에 맞아도 그 퍼널이 꺼져 있으면 안 나갑니다.</p>
-<div class="note note-note"><span class="note-label">참고</span><div class="note-body"><p>실시간 발송 캠페인은 메인 타겟 퍼널이 「전체」로 고정되고, 노출 퍼널은 고를 수 없습니다.</p>
-</div></div><p><strong>7. 예상 모수 확인하기</strong> — 지금 조건으로 몇 명에게 나갈지 보여줍니다. <strong>캠페인을 켜기 전에 꼭 한 번 누르세요.</strong> 0명이거나 너무 많으면 조건을 다시 봅니다.</p>
-<p><strong>생성</strong>을 누르면 캠페인이 만들어지고 상세 화면으로 갑니다. 이 시점에는 아직 <strong>OFF</strong>이고 콘텐츠도 없습니다.</p>
-<h3 id="콘텐츠-만들기">콘텐츠 만들기</h3><p>캠페인 상세 화면 오른쪽 위 <strong>New Content</strong>를 누릅니다. 콘텐츠는 캠페인 안에서만 만들 수 있습니다.</p>
-<p><strong>1. 컨텐츠 명</strong> — 저니 매트릭스 보드와 리포트에 나오는 이름입니다. 예: 「장바구니 리마인드 D+1 A안」.</p>
-<p><strong>2. 메시지 목적</strong> — <code>알림</code> 또는 <code>광고</code>. 이것에 따라 고를 수 있는 채널이 정해집니다.</p>
-<div class="tablewrap"><table>
-<thead>
-<tr>
-<th>목적</th>
-<th>채널</th>
-<th>언제</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>알림</strong></td>
-<td><strong>알림톡</strong></td>
-<td>주문·배송·쿠폰 만료처럼 꼭 도착해야 하는 안내. 카카오 검수를 받습니다. 우리 채널을 추가하지 않은 고객에게도 갑니다</td>
-</tr>
-<tr>
-<td><strong>광고</strong></td>
-<td><strong>브랜드메시지</strong></td>
-<td>추천·할인·이벤트. 검수 없이 바로 나갑니다. 채널 친구에게만 갑니다</td>
-</tr>
-</tbody></table></div>
-<p>일반 발송 캠페인에서는 「광고」만 고를 수 있습니다. 「알림」은 무조건 발송 캠페인에서만 됩니다.</p>
-<p><strong>3. Delay Time</strong> — 조건에 맞은 날부터 <strong>며칠 뒤에</strong>(실시간이면 이벤트 뒤 <strong>몇 분 뒤에</strong>) 보낼지입니다.</p>
-<p>캠페인이 아니라 <strong>콘텐츠마다</strong> 정합니다. 캠페인 상세의 콘텐츠 목록에 <code>D + 1</code>처럼 표시됩니다.</p>
-<div class="tablewrap"><table>
-<thead>
-<tr>
-<th>캠페인 발송 유형</th>
-<th>Delay Time</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>예약 발송</td>
-<td>일 단위. <code>1일 후</code> · <code>3일 후</code> · <code>5일 후</code> · <code>7일 후</code> 중 고르거나, 직접 선택으로 <strong>1일 ~ 180일</strong></td>
-</tr>
-<tr>
-<td>실시간 발송</td>
-<td>분 단위. <code>3분 후</code> · <code>5분 후</code> · <code>10분 후</code> · <code>30분 후</code> · <code>60분 후</code> 중 고르거나, 직접 선택으로 <strong>5분 ~ 60분</strong>(1분 단위). 가입·주문 같은 이벤트가 일어난 시각부터 셉니다</td>
-</tr>
-</tbody></table></div>
-<div class="note note-note"><span class="note-label">참고</span><div class="note-body"><p>예약 발송 캠페인에는 <strong>발송 시각</strong>(예: 오전 10시)도 따로 있습니다. Delay Time은 &quot;며칠 뒤에&quot;, 발송 시각은 &quot;그날 몇 시에&quot;입니다.</p>
-</div></div><p><strong>Delay Time을 다르게 하면 순서대로 나갑니다.</strong> 한 캠페인에 D+1, D+3, D+7 콘텐츠를 넣으면 세 통이 차례로 갑니다. 신규 고객 환영 5통 같은 연속 콘텐츠를 이렇게 만듭니다.</p>
-<p><strong>Delay Time이 같은 콘텐츠가 여러 개면, 반응이 좋은 것 하나만 나갑니다.</strong> 이게 자동 A/B 테스트입니다. 먼저 받은 고객들의 반응으로 어느 콘텐츠가 나은지 정하고, 그 뒤 고객에게는 이긴 콘텐츠를 보냅니다.</p>
-<p>콘텐츠 목록은 Delay Time이 짧은 순서로 정렬됩니다.</p>
-<p><strong>4. 발송 기간</strong> — <code>무제한</code> 또는 <code>직접 설정</code>. 직접 설정은 달력에서 시작일과 종료일을 고릅니다. 시즌 캠페인이 아니면 무제한으로 둡니다.</p>
-<p><strong>5. 채널과 유형</strong> — 목적에 따라 알림톡 또는 브랜드메시지가 나오고, 그 안에서 모양(유형)을 고릅니다.</p>
-<ul>
-<li>알림톡은 메시지 유형(기본형 · 부가정보형 · 채널추가형 · 복합형)과 강조 유형(선택 안 함 · 이미지형 · 강조표기형 · 아이템리스트형)을 고릅니다. 글자수는 어느 유형이든 총 1,000자입니다. 규격 → <a class="xref" href="s-3-3.html">3-3</a></li>
-<li>브랜드메시지는 6가지 모양입니다. 기본 텍스트 이미지형(글 위주, 1,300자) · 와이드 이미지형(큰 사진 1장, 76자) · 와이드 리스트형(목록 3~4개) · 캐러셀 피드형(옆으로 넘기는 2~6장) · 커머스형(상품 1개 + 가격) · 캐러셀 커머스형(상품 여러 개 + 가격). 규격 → <a class="xref" href="s-3-2.html">3-2</a></li>
-<li>어느 모양이 맞는지 모르겠으면 → <a class="xref" href="s-3-1.html">3-1</a></li>
-</ul>
-<p><strong>6. 내용 · 이미지 · 버튼</strong> — 유형에 맞는 칸이 나옵니다. 칸마다 글자수 한도가 표시됩니다.</p>
-<ul>
-<li>버튼 이름은 14자(알림톡, 기본 텍스트 이미지형) 또는 8자(그 밖의 브랜드메시지)입니다. 버튼 링크에 한글은 못 씁니다.</li>
-<li>가격에 줄을 긋고 싶으면 타이틀 끝에 <code>\s</code>를 붙입니다. → <a class="xref" href="s-3-4.html">3-4</a></li>
-</ul>
-<p><strong>7. 개인화 변수</strong> — 내용 칸 옆 <strong>변수 버튼</strong>을 누르면 창이 뜹니다. 고객 이름, 장바구니 상품 이름, 쿠폰 이름 같은 것을 넣을 수 있습니다.</p>
-<ul>
-<li><strong>목록에 있는 변수만</strong> 됩니다. 직접 타이핑하면 저장이 안 됩니다. 꼭 창에서 골라 넣으세요.</li>
-<li><strong>대체 문구</strong>를 넣어 두세요. 값이 없는 고객(예: 이름이 없는 회원)에게는 대체 문구가 나갑니다. 대체 문구도 없으면 그 고객에게는 안 나갈 수 있습니다. 예: <code>#{name}</code> → <code>고객</code>.</li>
-<li><strong>실시간 캠페인</strong>에서는 예약 변수(<code>#{name}</code> 등)가 빈칸으로 나갑니다. 주문 직후 콘텐츠의 이름은 <code>#{ordName}</code>입니다.</li>
-<li>변수는 실제 값으로 바뀐 뒤 글자수에 들어갑니다. 상품 이름처럼 긴 변수는 타이틀에 넣지 마세요.</li>
-</ul>
-<p>변수 전체 목록(30가지) → <a class="xref" href="s-3-5.html">3-5</a></p>
-<p><strong>8. 미리보기</strong> — 오른쪽에 입력하는 대로 보입니다. 카카오톡 규격 기준이고 실제 화면과 조금 다를 수 있습니다.</p>
-<p><strong>9. 테스트 발송</strong> — 채널·유형·이미지·내용·링크·버튼을 다 채우면 버튼이 켜집니다. 누르고 휴대폰 번호 11자리를 띄어쓰기 없이 넣고 <strong>발송하기</strong>. 캠페인이 꺼져 있어도 테스트는 됩니다. 안 오면 번호와, 그 번호가 우리 카카오 채널을 추가했는지 보세요.</p>
-<div class="note note-warn"><span class="note-label">주의</span><div class="note-body"><p><strong>알림톡은 만드는 도중에는 테스트가 안 됩니다.</strong> 먼저 <strong>생성</strong>으로 저장하고, 캠페인 상세에서 <strong>관리 → 수정</strong>으로 다시 열어야 테스트 버튼이 켜집니다. 그것도 카카오 검수를 통과해 발송 상태가 <code>발송 가능</code>일 때만 됩니다.</p>
-</div></div><p><strong>10. 생성</strong> — 저장합니다. 필수 칸이 비어 있으면 어느 칸인지 표시됩니다. 임시로 두려면 <strong>임시저장</strong>입니다.</p>
 <h3 id="알림톡은-검수를-기다립니다">알림톡은 검수를 기다립니다</h3><p>알림톡 콘텐츠를 저장하면 카카오 검수로 넘어갑니다. 캠페인 상세의 운영 모드에서 상태를 볼 수 있습니다.</p>
 <div class="tablewrap"><table>
 <thead>

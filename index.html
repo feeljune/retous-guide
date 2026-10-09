@@ -192,6 +192,26 @@ body.searching .nores.show{display:block}
 .results .none{padding:10px 12px;color:var(--fg-3);font-size:13px}
 .search{position:relative}
 h3{margin-top:30px}
+.shot{margin:18px 0 22px;max-width:100%}.shot img{display:block;width:100%;max-width:980px;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.06)}.shot figcaption{margin-top:8px;font-size:13px;color:var(--fg-3)}
+.shot-ph{margin:18px 0 22px;padding:28px 16px;border:2px dashed var(--line);border-radius:10px;color:var(--fg-3);text-align:center;font-size:14px;max-width:980px}.shot-ph small{display:block;margin-top:4px;font-size:12px;opacity:.7}
+.fields{counter-reset:f;list-style:none;padding:0;margin:14px 0 24px;max-width:980px}.fields>li{counter-increment:f;position:relative;padding:10px 0 10px 44px;border-top:1px solid var(--line)}.fields>li:last-child{border-bottom:1px solid var(--line)}.fields>li::before{content:counter(f);position:absolute;left:4px;top:10px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}.fields>li b:first-child{display:inline-block;margin-right:6px}.fields>li p{margin:4px 0 0}.fields>li ul{margin:6px 0 0;padding-left:18px}.fields>li li{margin:2px 0}
+/* 가상 저니 매트릭스 보드 */
+.jmb{margin:16px 0 24px;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;max-width:980px}
+.jmb-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line);font-size:12.5px}
+.jmb-top .lab{color:var(--fg-3);margin-right:2px}.jmb-top .seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}.jmb-top .seg span{padding:3px 9px}.jmb-top .seg .on{background:var(--accent);color:#fff}.jmb-top .btn{margin-left:auto;background:var(--accent);color:#fff;padding:5px 11px;border-radius:7px;font-weight:600}
+.jmb-tabs{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12.5px}.jmb-tabs span{padding:4px 10px;border:1px solid var(--line);border-radius:6px;color:var(--fg-2)}.jmb-tabs .on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent);font-weight:700}
+.jmb-wrap{overflow-x:auto}.jmb table{border-collapse:collapse;width:100%;min-width:760px;font-size:12.5px}
+.jmb th{background:#f6f8fb;font-weight:600;color:var(--fg-2);padding:8px 6px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}.jmb th.l{text-align:left}
+.jmb td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}.jmb td.l{text-align:left}
+.jmb tr.total td{background:#f6f8fb;font-weight:700}
+.jmb .tg{display:inline-block;width:30px;height:16px;border-radius:9px;background:#cfd6e0;position:relative;vertical-align:middle}.jmb .tg::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:#fff}.jmb .tg.on{background:var(--accent)}.jmb .tg.on::after{left:16px}
+.jmb .fn{display:inline-block;padding:1px 7px;border-radius:5px;font-size:11.5px;font-weight:600;border:1px solid}
+.jmb .f1{color:#b7791f;border-color:#f0d58c;background:#fff8e6}.jmb .f2{color:#2f855a;border-color:#9ae6b4;background:#effaf3}.jmb .f3{color:#2b6cb0;border-color:#90cdf4;background:#ebf8ff}.jmb .f4{color:#6b46c1;border-color:#d6bcfa;background:#f5f0ff}.jmb .f5{color:#b83280;border-color:#fbb6ce;background:#fff5f9}.jmb .f6{color:#c05621;border-color:#fbd38d;background:#fffaf0}.jmb .f7{color:#742a2a;border-color:#feb2b2;background:#fff5f5}
+.jmb .c0{color:#b8c0cc}.jmb .c1{background:#e8eefc}.jmb .c2{background:#c9d8fa}.jmb .c3{background:#9db9f5;color:#0b2a6b}.jmb .c4{background:#5c88e8;color:#fff}.jmb .c5{background:#1f4fc4;color:#fff}
+.jmb .mt{position:relative}.jmb .mt::after{content:"메인";position:absolute;right:3px;top:2px;font-size:9px;color:var(--accent);font-weight:700}
+.jmb .off{color:#b8c0cc}.jmb .off small{display:block;font-size:9.5px}
+.jmb-foot{padding:10px 14px;font-size:12px;color:var(--fg-3);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px}.jmb-foot i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px}
+.jmb-legend{margin:0 0 22px;padding:0;list-style:none;font-size:14px;max-width:980px}.jmb-legend li{padding:6px 0 6px 30px;position:relative}.jmb-legend li b.n{position:absolute;left:0;top:6px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center}
 h3.menu{margin-top:12px;padding:14px 18px;background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:10px;font-size:17px}
 .menu-end{margin:30px 0 0;padding:10px 14px;border:1px dashed var(--line);border-radius:8px;color:var(--fg-3);font-size:13.5px;max-width:68ch}
 .menu-end::before{content:"✔ ";color:var(--accent);font-weight:700}

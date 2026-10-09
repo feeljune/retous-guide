@@ -150,6 +150,13 @@ body.searching .nores.show{display:block}
 @media (min-width:861px){.nav-close,.scrim{display:none}}
 
 @media (max-width:860px){.tablewrap table{min-width:560px}}
+.concepts{margin-top:26px;padding:18px 20px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);max-width:68ch}
+.concepts h3{margin:0 0 12px;font-size:15px;color:var(--accent)}
+.concepts dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);gap:10px 16px}
+.concepts dt{font-weight:700;font-size:14.5px;color:var(--fg)}
+.concepts dd{margin:0;font-size:14px;color:var(--fg-2);line-height:1.75}
+.concepts p{margin:14px 0 0;font-size:14px;color:var(--fg-2);padding-top:12px;border-top:1px solid var(--line)}
+@media (max-width:600px){.concepts dl{grid-template-columns:1fr;gap:4px}.concepts dd{margin-bottom:8px}}
 .hero p+p{margin-top:10px}
 .hero p b{color:var(--fg)}
 .hero .hero-sub{margin-top:18px;color:var(--fg-3);font-size:14px}
@@ -203,6 +210,19 @@ h4{margin-top:22px}
   <p>이 메시지들을 통해 고객의 재방문율, 구매전환율, 구매 빈도, 객단가가 올라가고, 결과적으로 <b>Lifetime Value가 드라마틱하게 상승</b>합니다.</p>
   <p class="hero-sub">이 가이드는 처음 설정부터 매주 하는 운영까지를 순서대로 안내합니다.</p>
   <div class="meta"><span>25개 페이지</span><span>최종 수정 2026-10-09</span></div>
+  <div class="concepts">
+    <h3>핵심 개념</h3>
+    <dl>
+      <dt>저니 매트릭스 보드</dt><dd>캠페인과 퍼널을 행과 열로 구성해 칸을 만든 보드판입니다. 고객이 회원가입하면 제일 좌상단 칸에서 시작합니다. 고객의 퍼널과 행동에 따라 칸을 이동하며, 그 칸에서 가장 성과가 높은 콘텐츠를 받습니다.</dd>
+      <dt>퍼널</dt><dd>고객의 상태를 온보딩 · 탐색 · 고려 · 구매 · 재구매 · 초기 이탈 · 장기 이탈로 구분합니다. 이 퍼널 상태에 최적화된 캠페인을 만드는 것이 중요합니다.</dd>
+      <dt>타게팅 조건</dt><dd>각 퍼널에서 고객의 행동을 구체적으로 타게팅하는 조건입니다. 예를 들어 고려 퍼널의 타게팅 조건 하나는 「장바구니에 넣고 3일 동안 구매하지 않은 고객」입니다. 리토스는 60개 이상의 타게팅 조건을 제공하고 계속 늘어납니다. Text-to-SQL 기능으로 온디맨드로 추가할 수도 있습니다.</dd>
+      <dt>캠페인과 콘텐츠</dt><dd>구글이나 메타의 광고관리자처럼 2단계 구조입니다. 캠페인에서는 메인 타겟 퍼널, 타게팅 조건, 발송 우선순위를 정하고, 콘텐츠에서는 메시지 유형, 카피 문구, 이미지를 넣습니다. 하나의 캠페인에 여러 콘텐츠를 등록하면 자동으로 A/B 테스트를 한 뒤 오픈율이 가장 높은 콘텐츠를 우선 발송합니다.</dd>
+      <dt>퍼널 주기</dt><dd>고객의 구매·재구매 주기에 따라 설정합니다. 기본은 온보딩 7일, 액티브 퍼널 30일, 초기 이탈 90일, 장기 이탈 365일을 권장합니다.</dd>
+      <dt>발송 주기</dt><dd>캠페인 중 일반 발송의 발송 주기를 정합니다. 캠페인은 일반 발송 또는 무조건 발송이며, 무조건 발송은 고객이 조건에 해당되면 주기와 상관없이 발송합니다. 발송 주기가 있어서 고객이 너무 많은 광고성 메시지를 받지 않도록 조절할 수 있습니다.</dd>
+      <dt>쿨다운</dt><dd>고객이 한 번 받은 콘텐츠를 쿨다운 기간 동안 다시 받지 않게 하는 기능입니다. 쿨다운이 30일이면 30일 동안 같은 콘텐츠를 두 번 받지 않습니다.</dd>
+    </dl>
+    <p>발송 주기와 쿨다운이 있어서, 캠페인 수와 콘텐츠 수를 아주 많이 늘려도 한 사람에게 다수 발송하거나 같은 메시지를 중복 발송할 위험이 없어지고, 오히려 많은 메시지 중에서 최적의 메시지를 받게 됩니다.</p>
+  </div>
   
 </div>
 <section><p class="chapter-no">시작하기 전에</p><h2 class="chapter-title">리토스 시작하기 전에</h2>

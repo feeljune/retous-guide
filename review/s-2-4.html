@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>STEP 4 캠페인 만들고 콘텐츠 등록하기 · 리토스 가이드북</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* 레이아웃: 좌 고정 목차 / 본문 한 칼럼 / 아이콘 없이 텍스트 라벨만 */
+/* 단일 화이트 테마 — 뷰어 다크모드와 무관하게 흰 배경 고정 */
+:root{
+  --bg:#FFFFFF; --surface:#FFFFFF; --surface-2:#F3F5F8;
+  --fg:#172033; --fg-2:#4B566B; --fg-3:#7B869A;
+  --line:#E3E7EE; --line-2:#CCD3DE;
+  --accent:#1D4ED8; --accent-bg:#EDF2FE; --accent-line:#A9C0F5;
+  --warn:#9A5B00; --warn-bg:#FFF6E5; --warn-line:#EBCB8C;
+  --danger:#B42318; --danger-bg:#FEF0EE; --danger-line:#F0B4AD;
+  --note:#334155; --note-bg:#F1F4F8; --note-line:#C9D2DF;
+  --sans:"Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15.5px;line-height:1.8;-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--surface);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:12px}
+.brand{font-weight:700;font-size:15px;white-space:nowrap;letter-spacing:-.01em}
+.brand small{font-weight:400;color:var(--fg-3);margin-left:8px;font-size:12.5px}
+.search{flex:1 1 160px;min-width:0}
+.search input{width:100%;font:inherit;font-size:14px;padding:7px 12px;border:1px solid var(--line-2);border-radius:6px;background:var(--bg);color:var(--fg)}
+.navbtn{display:none;font:inherit;font-size:13px;padding:6px 11px;border:1px solid var(--line-2);background:var(--surface);color:var(--fg);border-radius:6px;cursor:pointer;white-space:nowrap}
+
+.shell{max-width:1180px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:48px;align-items:start}
+.sidenav{position:sticky;top:calc(58px + env(safe-area-inset-top,0px));max-height:calc(100vh - 80px);overflow-y:auto;padding-block:28px 40px;font-size:13.5px}
+.nav-group{margin-bottom:18px}
+.nav-group h4{margin:0 0 6px;font-size:12px;font-weight:700;color:var(--fg-2);letter-spacing:.02em}
+.nav-group ul{list-style:none;margin:0;padding:0 0 0 10px;border-left:1px solid var(--line);display:flex;flex-direction:column}
+.nav-group a{display:flex;gap:8px;align-items:baseline;padding:3px 0;color:var(--fg-2);text-decoration:none;line-height:1.5}
+.nav-group a:hover{color:var(--accent)}
+.nav-group a.on{color:var(--accent);font-weight:500}
+.nav-group a i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--fg-3);min-width:12px}
+.nav-group li.hide{display:none}
+.nav-steps h4,.nav-before h4{color:var(--accent)}
+.nav-ref{margin-top:26px;padding-top:14px;border-top:1px solid var(--line)}
+.nav-ref h4{color:var(--fg-3);font-weight:600}
+.nav-dev{margin-top:26px;padding-top:14px;border-top:1px solid var(--line)}
+.nav-dev h4{color:var(--warn)}
+
+main{padding-block:34px 90px;min-width:0}
+.hero{margin-bottom:44px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(26px,4vw,34px);line-height:1.35;margin:0 0 10px;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+.hero p{margin:0;color:var(--fg-2);max-width:60ch;font-size:16px}
+.meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;font-size:12.5px;color:var(--fg-3)}
+.hero-note{margin-top:18px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;font-size:13.5px;color:var(--fg-2);max-width:66ch;background:var(--surface)}
+.hero-note b{color:var(--fg)}
+
+.chapter{margin:60px 0 24px;padding-top:28px;border-top:1px solid var(--line-2);scroll-margin-top:80px}
+.chapter:first-of-type{margin-top:0;padding-top:0;border-top:0}
+.chapter-no{font-size:12.5px;font-weight:600;color:var(--accent);margin:0 0 4px;letter-spacing:.02em}
+.chapter-title{font-size:26px;font-weight:700;margin:0 0 10px;letter-spacing:-.02em}
+.part-dev .chapter-no{color:var(--warn)}
+
+section{margin-bottom:52px;scroll-margin-top:80px}
+.sec-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.sec-kicker{font-size:12px;color:var(--fg-3);margin:0 0 2px;font-weight:500}
+.step .sec-kicker{color:var(--accent);font-family:var(--mono);letter-spacing:.06em}
+.anchor{font-size:11.5px;color:var(--fg-3);text-decoration:none;opacity:0;transition:opacity .15s;white-space:nowrap}
+section:hover .anchor,.anchor:focus{opacity:1}
+.anchor.done{color:var(--accent)}
+h2{font-size:21px;line-height:1.4;margin:0 0 10px;font-weight:700;letter-spacing:-.015em;text-wrap:balance;scroll-margin-top:80px}
+.step-head{display:flex;align-items:center;gap:12px;margin:0 0 12px}
+.step-head h2{margin:0}
+.step-n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:16px;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+h3{font-size:16.5px;margin:28px 0 8px;font-weight:700;scroll-margin-top:80px}
+h4{font-size:15px;margin:20px 0 6px;font-weight:700}
+p{margin:0 0 14px;max-width:68ch}
+ul,ol{max-width:68ch;padding-left:22px;margin:0 0 14px}
+li{margin-bottom:5px}
+li>p{margin-bottom:4px}
+strong{font-weight:700}
+code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);padding:1px 5px;border-radius:4px}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0;max-width:68ch}
+a.ext{font-weight:500}
+a.ext::after{content:" ↗";font-size:.8em;color:var(--fg-3)}
+.xref{font-family:var(--mono);font-size:.88em;text-decoration:none;border-bottom:1px solid var(--accent-line)}
+pre.block{margin:0 0 16px;max-width:68ch;background:var(--surface-2);border-radius:8px;padding:12px 14px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.65;color:var(--fg-2)}
+pre.block code{background:none;padding:0;font-size:inherit}
+pre.raw{font-size:12px;white-space:pre-wrap;color:var(--danger)}
+
+.note{margin:0 0 16px;padding:12px 16px;border-radius:6px;border-left:3px solid;background:var(--surface);max-width:68ch;display:flex;gap:14px;font-size:14.5px}
+.note-label{flex:none;font-size:12px;font-weight:700;letter-spacing:.03em;padding-top:2px;min-width:36px}
+.note-body{min-width:0}.note-body p{margin:0}.note-body p+p{margin-top:7px}.note-body ul,.note-body ol{margin:6px 0 0;padding-left:18px}.note-body .tablewrap{margin-top:8px}.note-body h3{margin:0 0 6px;font-size:14.5px}
+.note-tip{border-color:var(--accent);background:var(--accent-bg)}.note-tip .note-label{color:var(--accent)}
+.note-warn{border-color:var(--warn);background:var(--warn-bg)}.note-warn .note-label{color:var(--warn)}
+.note-danger{border-color:var(--danger);background:var(--danger-bg)}.note-danger .note-label{color:var(--danger)}
+.note-note{border-color:var(--note);background:var(--note-bg)}.note-note .note-label{color:var(--note)}
+
+.badge{display:inline-block;font-size:11px;font-weight:700;line-height:1.5;padding:1px 7px;border-radius:4px;vertical-align:1px;margin-right:2px}
+.b-danger{background:var(--danger-bg);color:var(--danger)}.b-warn{background:var(--warn-bg);color:var(--warn)}.b-note{background:var(--note-bg);color:var(--note)}.b-tip{background:var(--accent-bg);color:var(--accent)}
+.tbd{display:inline-block;font-size:12px;line-height:1.5;padding:2px 8px;border-radius:4px;background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn-line);vertical-align:1px;font-weight:500}
+
+.tablewrap{overflow-x:auto;margin:0 0 18px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-size:12.5px;color:var(--fg-2);font-weight:700;background:var(--surface-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td .tbd,td .badge{white-space:normal}
+
+.steps-ol{counter-reset:s;list-style:none;padding:0;max-width:68ch}
+.steps-ol li{counter-increment:s;display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}
+.steps-ol li::before{content:counter(s);flex:none;width:24px;height:24px;border-radius:50%;background:var(--surface-2);color:var(--fg-2);font-size:12.5px;font-weight:700;display:grid;place-items:center}
+
+.decision{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:16px 18px;margin:0 0 18px;max-width:68ch}
+.decision>b{display:block;font-size:14.5px;margin-bottom:11px}
+.opts{display:flex;flex-wrap:wrap;gap:7px}
+.opt{font:inherit;font-size:13.5px;padding:6px 12px;border:1px solid var(--line-2);background:var(--bg);color:var(--fg-2);border-radius:6px;cursor:pointer;text-align:left}
+.opt:hover{border-color:var(--accent-line);color:var(--fg)}
+.opt[aria-pressed="true"]{background:var(--accent-bg);border-color:var(--accent);color:var(--accent);font-weight:500}
+.answer{margin-top:13px;padding:12px 14px;border-radius:6px;background:var(--accent-bg);border-left:3px solid var(--accent);font-size:14.5px}
+.deeplink{display:inline-flex;gap:8px;padding:8px 13px;border:1px solid var(--accent-line);border-radius:6px;text-decoration:none;font-size:14px}
+.deeplink span{font-family:var(--mono);font-size:11.5px;opacity:.7}
+
+.backlinks{font-size:13px;color:var(--fg-3);margin:-4px 0 14px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.backlinks a{text-decoration:none;background:var(--accent-bg);color:var(--accent);padding:2px 9px;border-radius:4px;font-weight:500}
+.sec-foot{margin:22px 0 0;padding-top:10px;border-top:1px dashed var(--line);font-size:12.5px;display:flex;gap:16px}
+.sec-foot a{color:var(--fg-3);text-decoration:none}
+.sec-foot a:hover{color:var(--accent)}
+.nores{display:none;padding:14px;border:1px dashed var(--line-2);border-radius:8px;color:var(--fg-3);font-size:14px;max-width:68ch}
+body.searching section:not(.hit){display:none}
+body.searching .hero,body.searching .chapter{display:none}
+body.searching .nores.show{display:block}
+
+.backbtn{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:75;font:inherit;font-size:13.5px;font-weight:500;padding:10px 16px;border:1px solid var(--accent-line);border-radius:999px;background:var(--surface);color:var(--accent);box-shadow:0 6px 20px rgba(23,32,51,.16);cursor:pointer;max-width:calc(100vw - 32px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.backbtn:hover{background:var(--accent-bg)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:6px;font-size:13px;z-index:80;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+
+@media (max-width:860px){
+  .shell{grid-template-columns:minmax(0,1fr);gap:0}
+  .navbtn{display:inline-block}
+  .sidenav{display:none;position:fixed;inset:0;top:auto;bottom:0;max-height:78vh;z-index:70;background:var(--surface);border-top:1px solid var(--line-2);border-radius:14px 14px 0 0;padding:16px 20px calc(24px + env(safe-area-inset-bottom,0px));overflow-y:auto;box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+  .sidenav.open{display:block}
+  .scrim{display:none;position:fixed;inset:0;z-index:65;background:rgba(0,0,0,.45)}
+  .scrim.open{display:block}
+  .nav-close{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-weight:700;font-size:14px}
+  .nav-close button{font:inherit;font-size:13px;padding:4px 10px;border:1px solid var(--line-2);background:var(--surface);color:var(--fg-2);border-radius:6px;cursor:pointer}
+  .chapter-title{font-size:22px}
+  .anchor{opacity:1}
+  .brand small{display:none}
+}
+@media (min-width:861px){.nav-close,.scrim{display:none}}
+
+@media (max-width:860px){.tablewrap table{min-width:560px}}
+.concepts{margin-top:26px;padding:18px 20px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);max-width:68ch}
+.concepts h3{margin:0 0 12px;font-size:15px;color:var(--accent)}
+.concepts dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);gap:10px 16px}
+.concepts dt{font-weight:700;font-size:14.5px;color:var(--fg)}
+.concepts dd{margin:0;font-size:14px;color:var(--fg-2);line-height:1.75}
+.concepts p{margin:14px 0 0;font-size:14px;color:var(--fg-2);padding-top:12px;border-top:1px solid var(--line)}
+@media (max-width:600px){.concepts dl{grid-template-columns:1fr;gap:4px}.concepts dd{margin-bottom:8px}}
+.hero p+p{margin-top:10px}
+.hero p b{color:var(--fg)}
+.hero .hero-sub{margin-top:18px;color:var(--fg-3);font-size:14px}
+.hero-fit{margin-top:22px;padding:16px 18px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;background:#f7f9fd}
+.hero-fit>b{display:block;font-size:15px;margin-bottom:8px}
+.hero-fit ul{margin:0 0 10px;padding-left:20px}.hero-fit li{margin:3px 0}
+.hero-fit p{margin:0}.hero-fit p+p{margin-top:8px}
+.hero-fit .hero-quote{color:var(--fg-2);font-style:normal;padding-left:12px;border-left:2px solid var(--line)}
+.nav-group h4 a{color:inherit;text-decoration:none}
+.nav-group h4 a.on{color:var(--accent)}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-top:18px;border-top:1px solid var(--line)}
+.pager a{flex:1;max-width:48%;text-decoration:none;color:var(--fg-2);font-size:13.5px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;min-width:0}
+.pager a:hover{border-color:var(--accent-line);color:var(--accent)}
+.pager a b{display:block;color:var(--fg);font-size:14.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pager a.next{text-align:right;margin-left:auto}
+.pager a span{font-size:11.5px;color:var(--fg-3)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin:14px 0 30px}
+.card{display:block;text-decoration:none;color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--surface)}
+.card:hover{border-color:var(--accent-line)}
+.card .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:14px;margin-bottom:8px}
+.card b{display:block;font-size:15px;margin-bottom:4px}
+.card p{margin:0;font-size:13px;color:var(--fg-2)}
+.card.plain .n{background:var(--surface-2);color:var(--fg-2)}
+.seclist{list-style:none;padding:0;margin:0 0 20px;max-width:68ch}
+.seclist li{border-bottom:1px solid var(--line)}
+.seclist a{display:flex;gap:12px;align-items:baseline;padding:11px 2px;text-decoration:none;color:var(--fg)}
+.seclist a:hover{color:var(--accent)}
+.seclist a i{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--fg-3);min-width:36px}
+.pagetoc{margin:0 0 22px;padding:12px 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface-2);font-size:13.5px;max-width:68ch}
+.pagetoc b{display:block;font-size:12px;color:var(--fg-3);margin-bottom:6px}
+.pagetoc a{display:inline-block;margin:2px 10px 2px 0;color:var(--fg-2);text-decoration:none}
+.pagetoc a:hover{color:var(--accent)}
+.results{position:absolute;left:0;right:0;top:calc(100% + 6px);background:var(--surface);border:1px solid var(--line-2);border-radius:8px;box-shadow:0 10px 30px rgba(23,32,51,.14);max-height:60vh;overflow-y:auto;z-index:60;display:none}
+.results.show{display:block}
+.results a{display:block;padding:9px 12px;text-decoration:none;color:var(--fg);border-bottom:1px solid var(--line);font-size:13.5px}
+.results a small{display:block;color:var(--fg-3);font-size:12px;margin-top:2px}
+.results a:hover{background:var(--accent-bg)}
+.results .none{padding:10px 12px;color:var(--fg-3);font-size:13px}
+.search{position:relative}
+h3{margin-top:30px}
+.place{margin:0 0 20px;padding:12px 16px;border:1px dashed #d9a441;border-radius:10px;background:#fffaf0;font-size:13.5px}.place>b{display:block;color:#8a5a00;margin-bottom:6px}.place ul{margin:0;padding-left:18px}.place li{margin:3px 0}.place small{color:var(--fg-3);margin-left:4px}
+.place-tag{margin:-4px 0 12px;font-size:12.5px;color:#8a5a00;background:#fffaf0;border-left:3px solid #d9a441;padding:4px 10px;display:inline-block}.place-tag code{font-size:12px}
+.decision.dec2{max-width:980px;display:flex;flex-direction:column;gap:16px}
+.dec2 .opts{flex-direction:row;flex-wrap:wrap;gap:7px}
+.dec2 .dec-r{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.dec2 .dec-img{width:100%;height:auto;max-height:560px;object-fit:contain;border-radius:8px;border:1px solid var(--line);background:#fff}
+.dec2 .dec-cap{font-size:12.5px;color:var(--fg-2);font-weight:600}.dec2 .dec-src{font-size:11px;color:var(--fg-3)}
+
+.gallery{display:flex;flex-wrap:wrap;gap:14px;margin:12px 0 22px;max-width:980px}
+.gallery figure{margin:0;flex:0 0 calc(50% - 7px);max-width:calc(50% - 7px);text-align:center}.gallery img{width:100%;height:auto;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:#fff}@media (max-width:600px){.gallery figure{flex-basis:100%;max-width:100%}}
+.gallery figcaption{margin-top:6px;font-size:12.5px;color:var(--fg-2);font-weight:600}.gallery .gal-src{flex-basis:100%;font-size:11px;color:var(--fg-3)}
+details.more{margin:18px 0 24px;border:1px solid var(--line);border-radius:10px;background:#fafbfd;max-width:980px}details.more summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--fg-2);list-style:none}details.more summary::before{content:"▸ ";color:var(--accent)}details.more[open] summary::before{content:"▾ "}details.more summary::-webkit-details-marker{display:none}details.more>*:not(summary){margin-left:16px;margin-right:16px}details.more>ol{padding-left:36px;margin-bottom:14px}details.more li{margin:6px 0}details.more>p{margin-top:4px}
+.shot{margin:18px 0 22px;max-width:100%}.shot img{display:block;width:100%;max-width:980px;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.06)}.shot figcaption{margin-top:8px;font-size:13px;color:var(--fg-3)}
+.shot-ph{margin:18px 0 22px;padding:28px 16px;border:2px dashed var(--line);border-radius:10px;color:var(--fg-3);text-align:center;font-size:14px;max-width:980px}.shot-ph small{display:block;margin-top:4px;font-size:12px;opacity:.7}
+.fields{counter-reset:f;list-style:none;padding:0;margin:14px 0 24px;max-width:980px}.fields>li{counter-increment:f;position:relative;padding:10px 0 10px 44px;border-top:1px solid var(--line)}.fields>li:last-child{border-bottom:1px solid var(--line)}.fields>li::before{content:counter(f);position:absolute;left:4px;top:10px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}.fields>li b:first-child{display:inline-block;margin-right:6px}.fields>li p{margin:4px 0 0}.fields>li ul{margin:6px 0 0;padding-left:18px}.fields>li li{margin:2px 0}
+/* 가상 저니 매트릭스 보드 */
+.jmb{margin:16px 0 24px;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;max-width:980px}
+.jmb-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line);font-size:12.5px}
+.jmb-top .lab{color:var(--fg-3);margin-right:2px}.jmb-top .seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}.jmb-top .seg span{padding:3px 9px}.jmb-top .seg .on{background:var(--accent);color:#fff}.jmb-top .btn{margin-left:auto;background:var(--accent);color:#fff;padding:5px 11px;border-radius:7px;font-weight:600}
+.jmb-tabs{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12.5px}.jmb-tabs span{padding:4px 10px;border:1px solid var(--line);border-radius:6px;color:var(--fg-2)}.jmb-tabs .on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent);font-weight:700}
+.jmb-wrap{overflow-x:auto}.jmb table{border-collapse:collapse;width:100%;min-width:760px;font-size:12.5px}
+.jmb th{background:#f6f8fb;font-weight:600;color:var(--fg-2);padding:8px 6px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}.jmb th.l{text-align:left}
+.jmb td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}.jmb td.l{text-align:left}
+.jmb tr.total td{background:#f6f8fb;font-weight:700}
+.jmb .tg{display:inline-block;width:30px;height:16px;border-radius:9px;background:#cfd6e0;position:relative;vertical-align:middle}.jmb .tg::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:#fff}.jmb .tg.on{background:var(--accent)}.jmb .tg.on::after{left:16px}
+.jmb .fn{display:inline-block;padding:1px 7px;border-radius:5px;font-size:11.5px;font-weight:600;border:1px solid}
+.jmb .f1{color:#b7791f;border-color:#f0d58c;background:#fff8e6}.jmb .f2{color:#2f855a;border-color:#9ae6b4;background:#effaf3}.jmb .f3{color:#2b6cb0;border-color:#90cdf4;background:#ebf8ff}.jmb .f4{color:#6b46c1;border-color:#d6bcfa;background:#f5f0ff}.jmb .f5{color:#b83280;border-color:#fbb6ce;background:#fff5f9}.jmb .f6{color:#c05621;border-color:#fbd38d;background:#fffaf0}.jmb .f7{color:#742a2a;border-color:#feb2b2;background:#fff5f5}
+.jmb .c0{color:#b8c0cc}.jmb .c1{background:#e8eefc}.jmb .c2{background:#c9d8fa}.jmb .c3{background:#9db9f5;color:#0b2a6b}.jmb .c4{background:#5c88e8;color:#fff}.jmb .c5{background:#1f4fc4;color:#fff}
+
+.jmb .off{color:#b8c0cc}.jmb .off small{display:block;font-size:9.5px}
+.jmb-foot{padding:10px 14px;font-size:12px;color:var(--fg-3);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px}.jmb-foot i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px}
+.jmb-legend{margin:0 0 22px;padding:0;list-style:none;font-size:14px;max-width:980px}.jmb-legend li{padding:6px 0 6px 30px;position:relative}.jmb-legend li b.n{position:absolute;left:0;top:6px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center}
+h3.menu{margin-top:12px;padding:14px 18px;background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:10px;font-size:17px}
+.menu-end{margin:30px 0 0;padding:10px 14px;border:1px dashed var(--line);border-radius:8px;color:var(--fg-3);font-size:13.5px;max-width:68ch}
+.menu-end::before{content:"✔ ";color:var(--accent);font-weight:700}
+hr.menu-sep{border-top:2px solid var(--accent);opacity:.35;margin:34px 0 26px}
+h4{margin-top:22px}
+</style></head><body><div class="topbar"><div class="topbar-in">
+  <div class="brand"><a href="index.html" style="color:inherit;text-decoration:none">리토스 가이드북</a><small>개발팀 검수본 · 2026-10-11</small></div>
+  <div class="search"><input id="q" type="search" placeholder="검색" autocomplete="off" aria-label="가이드 검색"><div class="results" id="results"></div></div>
+  <button class="navbtn" id="navbtn" type="button" aria-expanded="false" aria-controls="sidenav">목차</button>
+</div></div>
+<div class="scrim" id="scrim"></div>
+<div class="shell">
+  <nav class="sidenav" id="sidenav"><div class="nav-close"><span>목차</span><button type="button" id="navclose">닫기</button></div><div class="nav-group nav-before"><h4><a href="ch-1.html" data-page="ch-1.html">시작하기 전에</a></h4><ul><li><a href="s-1-1.html" data-page="s-1-1.html">리토스는 무엇을 하나요</a></li><li><a href="s-1-2.html" data-page="s-1-2.html">메뉴 둘러보기</a></li><li><a href="s-1-3.html" data-page="s-1-3.html">가입부터 발송 가능까지</a></li><li><a href="s-1-4.html" data-page="s-1-4.html">계정 상태</a></li><li><a href="s-1-5.html" data-page="s-1-5.html">누구에게 보낼 수 있나 — 채널별 조건</a></li></ul></div><div class="nav-group nav-steps"><h4><a href="ch-2.html" data-page="ch-2.html">리토스 시작하기 · 7단계</a></h4><ul><li><a href="s-2-1.html" data-page="s-2-1.html"><i>1</i>설정하기</a></li><li><a href="s-2-2.html" data-page="s-2-2.html"><i>2</i>퍼널 분석과 LTV 분석 확인하기</a></li><li><a href="s-2-3.html" data-page="s-2-3.html"><i>3</i>아하모먼트와 고객 행동 분석 확인하기</a></li><li><a href="s-2-4.html" data-page="s-2-4.html"><i>4</i>캠페인 만들고 콘텐츠 등록하기</a></li><li><a href="s-2-5.html" data-page="s-2-5.html"><i>5</i>저니 매트릭스 보드에서 켜고 끄고, 순서 정하기</a></li><li><a href="s-2-6.html" data-page="s-2-6.html"><i>6</i>발송하고 결과 확인하기</a></li><li><a href="s-2-7.html" data-page="s-2-7.html"><i>7</i>최적화 운영하기</a></li></ul></div><div class="nav-group nav-ref"><h4>자세히 보기</h4></div><div class="nav-group"><h4><a href="ch-3.html" data-page="ch-3.html">3. 콘텐츠 규격</a></h4><ul><li><a href="s-3-1.html" data-page="s-3-1.html">카카오 브랜드메시지 — 어떤 유형으로 만들까</a></li><li><a href="s-3-2.html" data-page="s-3-2.html">카카오 알림톡</a></li><li><a href="s-3-3.html" data-page="s-3-3.html">개인화 변수 전체 목록</a></li><li><a href="s-3-4.html" data-page="s-3-4.html">타게팅 조건 전체 목록</a></li></ul></div><div class="nav-group"><h4><a href="ch-4.html" data-page="ch-4.html">4. 성과 화면</a></h4><ul><li><a href="s-4-1.html" data-page="s-4-1.html">대시보드</a></li><li><a href="s-4-2.html" data-page="s-4-2.html">리포트</a></li><li><a href="s-4-3.html" data-page="s-4-3.html">퍼널 분석</a></li><li><a href="s-4-4.html" data-page="s-4-4.html">LTV 분석</a></li><li><a href="s-4-5.html" data-page="s-4-5.html">지표 용어</a></li></ul></div><div class="nav-group"><h4><a href="ch-5.html" data-page="ch-5.html">5. 요금과 결제</a></h4><ul><li><a href="s-5-1.html" data-page="s-5-1.html">요금제</a></li><li><a href="s-5-2.html" data-page="s-5-2.html">충전금</a></li><li><a href="s-5-3.html" data-page="s-5-3.html">결제 내역과 명세서</a></li></ul></div><div class="nav-group"><h4><a href="ch-6.html" data-page="ch-6.html">6. 자주 묻는 질문</a></h4><ul><li><a href="s-6.html" data-page="s-6.html">자주 묻는 질문</a></li></ul></div><div class="nav-group nav-dev"><h4>개발팀 부록</h4><ul><li><a href="app-open.html" data-page="app-open.html">확인 필요 목록</a></li><li><a href="app-check.html" data-page="app-check.html">화면 대조 기록 · 변수 30종</a></li><li><a href="app-links.html" data-page="app-links.html">화면별 가이드 링크</a></li></ul></div></nav>
+  <main><section id="s-2-4"><div class="sec-top"><p class="sec-kicker">STEP 4</p><a class="anchor" href="#" data-copy>이 페이지 주소 복사</a></div><div class="step-head"><span class="step-n">4</span><h2>캠페인 만들고 콘텐츠 등록하기</h2></div><p class="backlinks">여기로 온 곳 <a href="s-2-1.html">STEP 1 · 설정하기</a></p><div class="place"><b>리토스 노출 위치</b><ul><li>캠페인 생성 · 수정 화면 제목 줄 <small><code>#campaign-form</code></small></li><li>콘텐츠 생성 · 수정 화면 제목 줄 <small><code>#content-form</code></small></li><li>콘텐츠 생성 &gt; 테스트 발송 버튼이 비활성일 때 안내 <small><code>#alimtalk-review</code></small></li><li>캠페인 상세 &gt; 운영 모드 &gt; 검수 상태 옆 <small><code>#alimtalk-review</code></small></li></ul></div><p><strong>처음 시작할 때는 리토스가 직접 등록해 드립니다.</strong> 3단계 아하모먼트 분석과 그동안 쌓인 노하우를 바탕으로, 리토스가 첫 캠페인과 콘텐츠를 한꺼번에 등록합니다. 고객사는 저니 매트릭스 보드에서 내용을 보고, 문구와 조건이 우리 브랜드에 맞는지만 확인하면 됩니다. 그 뒤에 직접 추가하거나 고치는 방법이 이 페이지입니다.</p>
+<p>직접 등록하는 방법은 아래와 같습니다. <strong>캠페인을 먼저 만들고, 그 안에 콘텐츠를 넣습니다.</strong></p>
+<h3 id="campaign-form">캠페인 만들기</h3><div class="place-tag">여기로 링크 — 캠페인 생성 · 수정 화면 제목 줄 <code>#campaign-form</code></div><p>저니 매트릭스 보드 오른쪽 위 <strong>+ New Campaign</strong>을 누르면 아래 화면이 열립니다. 위에서부터 순서대로 채웁니다.</p>
+<figure class="shot"><img src="img/campaign-form.png" alt="캠페인 생성 화면 (New Campaign)" loading="lazy"><figcaption>캠페인 생성 화면 (New Campaign)</figcaption></figure>
+
+<ol class="fields">
+<li><b>캠페인 명</b> 저니 매트릭스 보드에 보이는 이름입니다. 나중에 알아볼 수 있게 씁니다. 예: 「장바구니 3일 미구매 리마인드」</li>
+<li><b>캠페인 설명</b> 메모입니다. 왜 만들었는지 한 줄 적어 두면 좋습니다.</li>
+<li><b>발송 우선 순위</b> 둘 중 하나입니다.
+<ul>
+<li><b>일반 발송</b> — 보통의 마케팅 콘텐츠. 1단계에서 정한 발송 주기(고객 한 명에게 하루 몇 통) <b>안에서</b>, 보드 순서대로 나갑니다. 대부분의 캠페인이 이쪽입니다.</li>
+<li><b>무조건 발송</b> — 주문 확인 · 배송 안내 · 쿠폰 만료처럼 <b>꼭 가야 하는 안내</b>. 발송 주기를 무시하고 조건에 맞으면 나갑니다. 고객이 하루에 받는 통수에 안 잡히니, 정말 필요한 것에만 쓰세요.</li>
+</ul>
+여기서 고른 것에 따라 ④ 발송 유형과 콘텐츠에서 고를 수 있는 것이 정해집니다.
+<div class="tablewrap"><table><thead><tr><th></th><th>④ 발송 유형</th><th>콘텐츠의 메시지 목적</th><th>발송 주기</th></tr></thead><tbody>
+<tr><td><b>무조건 발송</b></td><td>예약 · 실시간 둘 다</td><td>알림 · 광고 둘 다</td><td>적용 안 함</td></tr>
+<tr><td><b>일반 발송</b></td><td>예약만</td><td>광고만</td><td>적용됨</td></tr>
+</tbody></table></div>
+무조건 발송에 어울리는 타게팅 조건 목록 → <a class="xref" href="s-3-4.html">3-4 타게팅 조건 전체 목록</a></li>
+<div class="tablewrap"><table><thead><tr><th></th><th>④ 발송 유형</th><th>콘텐츠의 메시지 목적</th><th>발송 주기</th></tr></thead><tbody>
+<tr><td><b>무조건 발송</b></td><td>예약 · 실시간 둘 다</td><td>알림 · 광고 둘 다</td><td>적용 안 함</td></tr>
+<tr><td><b>일반 발송</b></td><td>예약만</td><td>광고만</td><td>적용됨</td></tr>
+</tbody></table></div></li>
+<li><b>발송 유형</b> <b>예약 발송</b>은 매일 정해진 시각에 조건에 맞는 고객을 모아 보냅니다. 고르면 오른쪽에 <b>발송 시각</b>(오전/오후 · 시 · 분)이 나오고, 1단계에서 정한 발송 시간 안이어야 합니다. <b>실시간 발송</b>은 고객이 가입·주문 같은 행동을 한 직후에 보냅니다. 무조건 발송일 때만 고를 수 있습니다. ③과 ④의 조합에 따라 아래가 달라집니다.
+<div class="tablewrap"><table><thead><tr><th>조합</th><th>⑤ 메인 타겟 퍼널</th><th>⑥ 타게팅</th><th>⑦ 노출 퍼널</th><th>콘텐츠 Delay Time</th><th>콘텐츠 메시지 목적</th></tr></thead><tbody>
+<tr><td><b>무조건 + 실시간</b><br><small>예: 주문 접수 안내, 가입 환영</small></td><td>「전체」로 고정</td><td>미리 정해진 <b>이벤트 목록</b>에서 선택 (회원 가입 · 장바구니 담기 · 주문 접수 · 입금/배송/취소 상태 변경 등)</td><td>선택 불가</td><td><b>3분 ~ 60분 후</b></td><td>알림 · 광고</td></tr>
+<tr><td><b>무조건 + 예약</b><br><small>예: 쿠폰 만료 안내</small></td><td>7단계 중 하나</td><td>1단계에서 다운로드한 <b>타게팅 조건</b>에서 선택</td><td>선택 가능</td><td><b>1일 ~ 180일 후</b></td><td>알림 · 광고</td></tr>
+<tr><td><b>일반 + 예약</b><br><small>예: 장바구니 리마인드, 재구매 제안</small></td><td>7단계 중 하나</td><td>1단계에서 다운로드한 <b>타게팅 조건</b>에서 선택</td><td>선택 가능</td><td><b>1일 ~ 180일 후</b></td><td>광고만</td></tr>
+</tbody></table></div></li>
+<li><b>메인 타겟 퍼널</b> 이 캠페인이 겨냥하는 단계 <b>하나</b>를 고릅니다. 실시간 발송이면 「전체」로 정해져 있습니다.</li>
+<li><b>타게팅</b> 단계를 고르면 그 단계에서 쓸 수 있는 조건 목록이 나옵니다. <b>1단계에서 다운로드한 조건만</b> 보입니다. 안 보이면 설정 > 타게팅 조건에서 다운로드하세요. 실시간 발송이면 조건 대신 회원 가입 · 장바구니 담기 · 주문 접수 같은 <b>이벤트 목록</b>이 나옵니다.</li>
+<li><b>노출 퍼널</b> 메인 타겟 말고 <b>추가로</b> 보낼 단계에 체크합니다. 예: 메인이 고려인 장바구니 캠페인을 탐색 고객에게도 보내고 싶을 때. 나중에 저니 매트릭스 보드에서 켜고 끌 수 있습니다. 실시간 발송이면 고를 수 없습니다.</li>
+<li><b>세부 조건</b> 고른 타게팅 조건의 설명(예: 「장바구니 담은 지 3일째 미구매」)이 자동으로 보입니다. 여기서는 읽고 확인만 합니다. <b>이 화면에서 값을 바로 고칠 수는 없습니다.</b> 날수나 금액을 우리 가게에 맞게 바꾸고 싶으면 이렇게 합니다.
+<ul>
+<li><b>설정 &gt; 타게팅 조건</b>으로 갑니다. (지금 만들던 캠페인은 저장 전이니 취소하고 가도 됩니다)</li>
+<li>기업 타게팅 조건 탭에서 그 조건을 <b>복사</b>합니다. 원본을 바로 고치면 그 조건을 쓰는 다른 캠페인까지 같이 바뀌니, 꼭 사본을 만듭니다.</li>
+<li>사본의 이름과 세부 조건 값(예: 3일 → 5일)을 고치고 <b>저장</b>합니다.</li>
+<li>저니 매트릭스 보드로 돌아와 다시 New Campaign을 누르면, ⑥ 타게팅 목록에 <b>방금 만든 사본이 보입니다.</b> 그것을 골라 ⑨ 예상 모수를 확인하고 생성하면 됩니다.</li>
+</ul>
+자세한 순서 → <a class="xref" href="s-2-1.html">2-1 STEP 1 설정하기</a></li>
+<li><b>예상 모수 확인하기</b> 지금 조건으로 몇 명에게 나갈지 보여줍니다. <b>캠페인을 켜기 전에 꼭 한 번 누르세요.</b> 0명이거나 너무 많으면 조건을 다시 봅니다.</li>
+<li><b>생성</b> 캠페인이 만들어지고 상세 화면으로 갑니다. 이때는 아직 <b>OFF</b>이고 콘텐츠도 없습니다.</li>
+</ol>
+
+<div class="note note-note"><span class="note-label">참고</span><div class="note-body"><p>메인 타겟 퍼널은 항상 ON이고 끌 수 없습니다. 노출 퍼널은 저니 매트릭스 보드에서 켜고 끕니다. <strong>콘텐츠는 고객이 있는 단계가 ON일 때만 나갑니다.</strong></p>
+</div></div><h3 id="content-form">콘텐츠 만들기</h3><div class="place-tag">여기로 링크 — 콘텐츠 생성 · 수정 화면 제목 줄 <code>#content-form</code></div><p>캠페인 상세 화면 오른쪽 위 <strong>+ New Content</strong>를 누르면 아래 화면이 열립니다. 콘텐츠는 캠페인 안에서만 만들 수 있습니다.</p>
+<figure class="shot"><img src="img/content-form.png" alt="콘텐츠 생성 화면 (New Content) — 위쪽" loading="lazy"><figcaption>콘텐츠 생성 화면 (New Content) — 위쪽</figcaption></figure>
+
+<ol class="fields">
+<li><b>컨텐츠 명</b> 저니 매트릭스 보드와 리포트에 보이는 이름입니다. 예: 「장바구니 리마인드 D+1 A안」</li>
+<li><b>발송 유형</b> 캠페인에서 정한 것(예약/실시간)이 자동으로 보입니다. 여기서는 못 바꿉니다.</li>
+<li><b>메시지 목적</b> <b>알림</b>은 주문·배송·쿠폰 만료처럼 꼭 도착해야 하는 안내입니다. 알림톡으로 나가고 카카오 검수를 받으며, 우리 채널을 추가하지 않은 고객에게도 갑니다. <b>광고</b>는 추천·할인·이벤트입니다. 브랜드메시지로 나가고 검수 없이 바로 나가지만, 채널 친구에게만 갑니다. 일반 발송 캠페인에서는 광고만 고를 수 있습니다.</li>
+<li><b>Delay Time</b> <b>"언제 보낼까"를 정하는 칸입니다.</b> 캠페인은 "누구에게"를 정하고, Delay Time은 그 고객에게 <b>조건에 걸린 날(시각)로부터 며칠(몇 분) 뒤에</b> 보낼지를 정합니다. 발송 시점이 여기서 결정되니 가장 신경 써서 고르세요. 캠페인이 아니라 <b>콘텐츠마다</b> 정하고, 목록에 <code>D + 1</code>처럼 보입니다.
+<p><b>고를 수 있는 값</b> — 예약 발송은 1·3·5·7일 후 또는 직접 선택(1~180일). 실시간 발송은 3·5·10·30·60분 후 또는 직접 선택(5~60분).</p>
+<p><b>조건이 「회원 가입」 「주문 완료」처럼 시각이 찍히는 사건이면</b> — Delay Time으로 원하는 타이밍에 정확히 보낼 수 있습니다. 가입 다음 날(D+1), 주문 7일 뒤(D+7)처럼요.</p>
+<p><b>조건이 「최근 3일 동안 10만 원 이상 구매」처럼 범위로 고르는 것이면</b> — Delay Time은 <b>D+1로만</b> 두세요. 조건에 걸리는 날이 날마다 달라지기 때문에, 멀리 잡으면 의도한 시점과 어긋납니다.</p>
+<p><b>Delay Time을 여러 개 넣으면 시퀀스 캠페인이 됩니다.</b> 캠페인 하나에 D+1, D+3, D+5 콘텐츠를 넣으면 그 날짜에 차례로 나갑니다. 챌린지처럼 30일 동안 매일 미션을 안내해야 한다면, 타게팅 조건을 「챌린지 참여 고객」으로 두고 D+1부터 D+30까지 콘텐츠 30개를 넣으면 됩니다. 캠페인은 하나면 됩니다.</p>
+<p><b>같은 Delay Time의 콘텐츠는 3개 이상 넣으세요.</b> 리토스가 자동으로 A/B 테스트를 해서, 효율이 좋은 콘텐츠부터 순서대로 보냅니다.</p></li>
+<li><b>발송 기간</b> <b>무제한</b>이 기본입니다. 프로모션이나 이벤트처럼 기간이 정해져 있으면 <b>직접 설정</b>에서 시작일과 종료일을 그 기간에 맞춰 두세요. 기간이 끝나면 저절로 안 나가니, 끝나는 날 콘텐츠를 따로 OFF 하지 않아도 됩니다.</li>
+<li><b>채널</b> 메시지 목적에 따라 알림톡 또는 브랜드메시지가 나옵니다. 고르면 그 아래에 <b>유형</b>(모양)과 입력 칸이 나타납니다.</li>
+</ol>
+
+<figure class="shot"><img src="img/content-form-2.png" alt="메시지 목적 「광고」 → 채널 브랜드 메시지 · 기본 텍스트 이미지형을 고른 뒤" loading="lazy"><figcaption>메시지 목적 「광고」 → 채널 브랜드 메시지 · 기본 텍스트 이미지형을 고른 뒤</figcaption></figure>
+
+<figure class="shot"><img src="img/content-form-alimtalk.png" alt="메시지 목적 「알림」 → 채널 알림톡 · 기본형을 고른 뒤. 메시지 유형 · 강조 유형 · 내용(1,000자) · 버튼(이름 14자 + 링크)이 나오고, 미리보기가 알림톡 모양으로 바뀝니다" loading="lazy"><figcaption>메시지 목적 「알림」 → 채널 알림톡 · 기본형을 고른 뒤. 메시지 유형 · 강조 유형 · 내용(1,000자) · 버튼(이름 14자 + 링크)이 나오고, 미리보기가 알림톡 모양으로 바뀝니다</figcaption></figure>
+
+<ol class="fields" style="counter-reset:f 6">
+<li><b>유형</b> 알림톡은 메시지 유형(기본형 · 부가정보형 · 채널추가형 · 복합형)과 강조 유형(이미지형 · 강조표기형 · 아이템리스트형)을 고릅니다. 브랜드메시지는 6가지 모양(기본 텍스트 이미지형 · 와이드 이미지형 · 와이드 리스트형 · 캐러셀 피드형 · 커머스형 · 캐러셀 커머스형) 중 하나입니다. 브랜드메시지 유형 고르기와 규격 → <a class="xref" href="s-3-1.html">3-1 카카오 브랜드메시지 — 어떤 유형으로 만들까</a>, 알림톡 규격 → <a class="xref" href="s-3-2.html">3-2 카카오 알림톡</a></li>
+<li><b>내용 · 이미지 · 버튼</b> 유형에 맞는 칸이 나오고, 칸마다 글자수 한도가 표시됩니다. 버튼 링크에 한글은 못 씁니다. 가격에 줄을 긋고 싶으면 → <a class="xref" href="s-3-2.html">3-2 카카오 알림톡</a></li>
+<li><b>변수 넣기</b> 내용 칸 옆 <b>변수 버튼</b>을 누르면 고객 이름, 장바구니 상품 이름, 쿠폰 이름 같은 것을 넣을 수 있습니다. <b>창에서 골라 넣어야</b> 하고 직접 타이핑하면 저장이 안 됩니다. <b>대체 문구</b>(예: 이름이 없으면 「고객」)를 꼭 넣으세요. 없으면 값이 없는 고객에게는 안 나갈 수 있습니다. 실시간 캠페인에서 이름은 <code>#{ordName}</code>입니다. 변수 전체 목록 → <a class="xref" href="s-3-3.html">3-3 개인화 변수 전체 목록</a></li>
+<li><b>미리보기</b> 오른쪽에 입력하는 대로 보입니다. 카카오톡 규격 기준이라 실제 화면과 조금 다를 수 있습니다.</li>
+<li><b>테스트 발송</b> 필수 칸을 다 채우면 버튼이 켜집니다. 휴대폰 번호 11자리를 띄어쓰기 없이 넣고 <b>발송하기</b>. 캠페인이 꺼져 있어도 테스트는 됩니다. 안 오면 번호와, 그 번호가 우리 카카오 채널을 추가했는지 보세요.</li>
+<li><b>생성</b> 저장합니다. 빈 필수 칸이 있으면 어느 칸인지 표시됩니다. 임시로 두려면 <b>임시저장</b>입니다.</li>
+</ol>
+
+<div class="note note-warn"><span class="note-label">주의</span><div class="note-body"><p><strong>알림톡은 만드는 도중에는 테스트가 안 됩니다.</strong> 먼저 생성으로 저장하고, 캠페인 상세에서 수정으로 다시 열어야 테스트 버튼이 켜집니다. 그것도 카카오 검수를 통과해 발송 상태가 <code>발송 가능</code>일 때만 됩니다.</p>
+</div></div><h3 id="alimtalk-review">알림톡은 검수를 기다립니다</h3><div class="place-tag">여기로 링크 — 캠페인 상세 &gt; 운영 모드 &gt; 검수 상태 옆 <code>#alimtalk-review</code></div><div class="place-tag">여기로 링크 — 콘텐츠 생성 &gt; 테스트 발송 버튼이 비활성일 때 안내 <code>#alimtalk-review</code></div><p>알림톡 콘텐츠를 저장하면 카카오 검수로 넘어갑니다. 캠페인 상세의 운영 모드에서 상태를 볼 수 있습니다.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>상태</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>검수 중</strong></td>
+<td>카카오가 보는 중. 아직 안 나감</td>
+</tr>
+<tr>
+<td><strong>검수 반려</strong></td>
+<td>거절됨. 고쳐서 다시 저장해야 함</td>
+</tr>
+<tr>
+<td><strong>발송 가능</strong></td>
+<td>통과. 캠페인을 켜면 나감</td>
+</tr>
+</tbody></table></div>
+<p>브랜드메시지는 검수가 없어서 바로 <code>발송 가능</code>입니다.</p>
+<h3 id="three-contents">콘텐츠는 3개 이상</h3><p>캠페인 하나에 콘텐츠를 <strong>3개 이상</strong> 넣어 두세요. 이유가 두 가지입니다.</p>
+<ul>
+<li>같은 Delay Time에 여러 개를 넣으면 리토스가 반응을 보고 보내는 순서를 정합니다(자동 A/B). 고객은 그 순서대로 받습니다.</li>
+<li>광고 쿨다운 때문에 같은 콘텐츠는 30일 동안 같은 사람에게 다시 안 나갑니다. 콘텐츠가 하나면 한 번 받은 고객에게는 한 달 동안 보낼 게 없습니다.</li>
+</ul>
+<div class="pager"><a class="prev" href="s-2-3.html"><span>← 이전</span><b>STEP 3 · 아하모먼트와 고객 행동 분석 확인하기</b></a><a class="next" href="s-2-5.html"><span>다음 →</span><b>STEP 5 · 저니 매트릭스 보드에서 켜고 끄고, 순서 정하기</b></a></div></section></main>
+</div>
+<button type="button" class="backbtn" id="backbtn" hidden>← 이전 페이지로</button>
+<script>
+(function(){
+  "use strict";
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  /* 페이지를 열면 맨 위부터 (뷰어가 이전 스크롤 위치를 되살리는 것을 막음) */
+  try{ history.scrollRestoration="manual"; }catch(e){}
+  if(!location.hash){ window.scrollTo(0,0); setTimeout(function(){ window.scrollTo(0,0); },0); window.addEventListener("load",function(){ if(!location.hash) window.scrollTo(0,0); }); }
+  var here=location.pathname.split("/").pop()||"index.html";
+  $$("#sidenav a[data-page]").forEach(function(a){ if(a.getAttribute("data-page")===here) a.classList.add("on"); });
+
+  $$(".decision").forEach(function(d){
+    var ans=document.createElement("div"); ans.className="answer"; ans.hidden=true; ($(".dec-l",d)||d).appendChild(ans);
+    $$(".opt",d).forEach(function(btn){ btn.addEventListener("click",function(){
+      $$(".opt",d).forEach(function(b){b.setAttribute("aria-pressed","false")}); btn.setAttribute("aria-pressed","true");
+      ans.textContent=btn.getAttribute("data-r"); ans.hidden=false;
+      var im=$(".dec-img",d), cap=$(".dec-cap",d), src=btn.getAttribute("data-img"); if(im&&src){ im.src=src; im.alt=btn.getAttribute("data-r")+" 예시"; if(cap) cap.textContent="예시 — "+btn.getAttribute("data-r"); } }); });
+  });
+
+  var toast=document.createElement("div"); toast.className="toast"; document.body.appendChild(toast); var tt=null;
+  function say(t){ toast.textContent=t; toast.classList.add("show"); clearTimeout(tt); tt=setTimeout(function(){toast.classList.remove("show")},1600); }
+  $$("[data-copy]").forEach(function(a){ a.addEventListener("click",function(e){
+    e.preventDefault(); var url=location.href.split("#")[0];
+    function ok(){ a.classList.add("done"); say("주소를 복사했습니다"); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(ok,function(){ say(url); }); } else { say(url); }
+  }); });
+
+  /* 뒤로 가기 */
+  var back=$("#backbtn");
+  if(back){ try{ if(history.length>1 && document.referrer && document.referrer.indexOf(location.host)>-1){ back.hidden=false; } }catch(e){}
+    back.addEventListener("click",function(){ history.back(); }); }
+
+  /* 검색: 색인 파일을 필요할 때 받아옴 */
+  var q=$("#q"), res=$("#results"), idx=null, tmr=null;
+  function render(list,v){ if(!v){res.classList.remove("show");return}
+    res.innerHTML=list.length?list.slice(0,20).map(function(p){ return '<a href="'+p.file+'">'+p.title+'<small>'+p.kicker+' · '+p.snip+'</small></a>'; }).join(""):'<div class="none">검색 결과가 없습니다.</div>';
+    res.classList.add("show"); }
+  function run(){ var v=q.value.trim().toLowerCase(); if(!v){render([],v);return}
+    var hits=idx.map(function(p){ var t=p.text.toLowerCase(); var i=t.indexOf(v); var inTitle=p.title.toLowerCase().indexOf(v)>-1;
+      if(i<0&&!inTitle) return null; var s=i<0?p.text.slice(0,60):p.text.slice(Math.max(0,i-30),i+50); return {file:p.file,title:p.title,kicker:p.kicker,snip:"…"+s+"…",score:(inTitle?2:0)+(i>-1?1:0)}; })
+      .filter(Boolean).sort(function(a,b){return b.score-a.score}); render(hits,v); }
+  if(q){ q.addEventListener("input",function(){ clearTimeout(tmr); tmr=setTimeout(function(){
+      if(idx) return run(); fetch("search-index.json").then(function(r){return r.json()}).then(function(j){ idx=j; run(); }).catch(function(){ res.innerHTML='<div class="none">검색 색인을 불러오지 못했습니다.</div>'; res.classList.add("show"); }); },150); });
+    document.addEventListener("click",function(e){ if(!e.target.closest(".search")) res.classList.remove("show"); });
+    q.addEventListener("keydown",function(e){ if(e.key==="Escape"){ res.classList.remove("show"); } }); }
+
+  var tb=$("#tbdcount"); if(tb) tb.textContent="0";
+
+  var nav=$("#sidenav"), scrim=$("#scrim"), navbtn=$("#navbtn");
+  function navOpen(on){ nav.classList.toggle("open",on); scrim.classList.toggle("open",on); navbtn.setAttribute("aria-expanded",on?"true":"false"); }
+  navbtn.addEventListener("click",function(){ navOpen(!nav.classList.contains("open")); });
+  scrim.addEventListener("click",function(){ navOpen(false); });
+  $("#navclose").addEventListener("click",function(){ navOpen(false); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") navOpen(false); });
+})();
+</script>
+</body></html>

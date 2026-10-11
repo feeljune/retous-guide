@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>화면 대조 기록 · 변수 30종 · 리토스 가이드북</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* 레이아웃: 좌 고정 목차 / 본문 한 칼럼 / 아이콘 없이 텍스트 라벨만 */
+/* 단일 화이트 테마 — 뷰어 다크모드와 무관하게 흰 배경 고정 */
+:root{
+  --bg:#FFFFFF; --surface:#FFFFFF; --surface-2:#F3F5F8;
+  --fg:#172033; --fg-2:#4B566B; --fg-3:#7B869A;
+  --line:#E3E7EE; --line-2:#CCD3DE;
+  --accent:#1D4ED8; --accent-bg:#EDF2FE; --accent-line:#A9C0F5;
+  --warn:#9A5B00; --warn-bg:#FFF6E5; --warn-line:#EBCB8C;
+  --danger:#B42318; --danger-bg:#FEF0EE; --danger-line:#F0B4AD;
+  --note:#334155; --note-bg:#F1F4F8; --note-line:#C9D2DF;
+  --sans:"Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15.5px;line-height:1.8;-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--surface);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:12px}
+.brand{font-weight:700;font-size:15px;white-space:nowrap;letter-spacing:-.01em}
+.brand small{font-weight:400;color:var(--fg-3);margin-left:8px;font-size:12.5px}
+.search{flex:1 1 160px;min-width:0}
+.search input{width:100%;font:inherit;font-size:14px;padding:7px 12px;border:1px solid var(--line-2);border-radius:6px;background:var(--bg);color:var(--fg)}
+.navbtn{display:none;font:inherit;font-size:13px;padding:6px 11px;border:1px solid var(--line-2);background:var(--surface);color:var(--fg);border-radius:6px;cursor:pointer;white-space:nowrap}
+
+.shell{max-width:1180px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:48px;align-items:start}
+.sidenav{position:sticky;top:calc(58px + env(safe-area-inset-top,0px));max-height:calc(100vh - 80px);overflow-y:auto;padding-block:28px 40px;font-size:13.5px}
+.nav-group{margin-bottom:18px}
+.nav-group h4{margin:0 0 6px;font-size:12px;font-weight:700;color:var(--fg-2);letter-spacing:.02em}
+.nav-group ul{list-style:none;margin:0;padding:0 0 0 10px;border-left:1px solid var(--line);display:flex;flex-direction:column}
+.nav-group a{display:flex;gap:8px;align-items:baseline;padding:3px 0;color:var(--fg-2);text-decoration:none;line-height:1.5}
+.nav-group a:hover{color:var(--accent)}
+.nav-group a.on{color:var(--accent);font-weight:500}
+.nav-group a i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--fg-3);min-width:12px}
+.nav-group li.hide{display:none}
+.nav-steps h4,.nav-before h4{color:var(--accent)}
+.nav-ref{margin-top:26px;padding-top:14px;border-top:1px solid var(--line)}
+.nav-ref h4{color:var(--fg-3);font-weight:600}
+.nav-dev{margin-top:26px;padding-top:14px;border-top:1px solid var(--line)}
+.nav-dev h4{color:var(--warn)}
+
+main{padding-block:34px 90px;min-width:0}
+.hero{margin-bottom:44px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(26px,4vw,34px);line-height:1.35;margin:0 0 10px;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+.hero p{margin:0;color:var(--fg-2);max-width:60ch;font-size:16px}
+.meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;font-size:12.5px;color:var(--fg-3)}
+.hero-note{margin-top:18px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;font-size:13.5px;color:var(--fg-2);max-width:66ch;background:var(--surface)}
+.hero-note b{color:var(--fg)}
+
+.chapter{margin:60px 0 24px;padding-top:28px;border-top:1px solid var(--line-2);scroll-margin-top:80px}
+.chapter:first-of-type{margin-top:0;padding-top:0;border-top:0}
+.chapter-no{font-size:12.5px;font-weight:600;color:var(--accent);margin:0 0 4px;letter-spacing:.02em}
+.chapter-title{font-size:26px;font-weight:700;margin:0 0 10px;letter-spacing:-.02em}
+.part-dev .chapter-no{color:var(--warn)}
+
+section{margin-bottom:52px;scroll-margin-top:80px}
+.sec-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.sec-kicker{font-size:12px;color:var(--fg-3);margin:0 0 2px;font-weight:500}
+.step .sec-kicker{color:var(--accent);font-family:var(--mono);letter-spacing:.06em}
+.anchor{font-size:11.5px;color:var(--fg-3);text-decoration:none;opacity:0;transition:opacity .15s;white-space:nowrap}
+section:hover .anchor,.anchor:focus{opacity:1}
+.anchor.done{color:var(--accent)}
+h2{font-size:21px;line-height:1.4;margin:0 0 10px;font-weight:700;letter-spacing:-.015em;text-wrap:balance;scroll-margin-top:80px}
+.step-head{display:flex;align-items:center;gap:12px;margin:0 0 12px}
+.step-head h2{margin:0}
+.step-n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:16px;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+h3{font-size:16.5px;margin:28px 0 8px;font-weight:700;scroll-margin-top:80px}
+h4{font-size:15px;margin:20px 0 6px;font-weight:700}
+p{margin:0 0 14px;max-width:68ch}
+ul,ol{max-width:68ch;padding-left:22px;margin:0 0 14px}
+li{margin-bottom:5px}
+li>p{margin-bottom:4px}
+strong{font-weight:700}
+code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);padding:1px 5px;border-radius:4px}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0;max-width:68ch}
+a.ext{font-weight:500}
+a.ext::after{content:" ↗";font-size:.8em;color:var(--fg-3)}
+.xref{font-family:var(--mono);font-size:.88em;text-decoration:none;border-bottom:1px solid var(--accent-line)}
+pre.block{margin:0 0 16px;max-width:68ch;background:var(--surface-2);border-radius:8px;padding:12px 14px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.65;color:var(--fg-2)}
+pre.block code{background:none;padding:0;font-size:inherit}
+pre.raw{font-size:12px;white-space:pre-wrap;color:var(--danger)}
+
+.note{margin:0 0 16px;padding:12px 16px;border-radius:6px;border-left:3px solid;background:var(--surface);max-width:68ch;display:flex;gap:14px;font-size:14.5px}
+.note-label{flex:none;font-size:12px;font-weight:700;letter-spacing:.03em;padding-top:2px;min-width:36px}
+.note-body{min-width:0}.note-body p{margin:0}.note-body p+p{margin-top:7px}.note-body ul,.note-body ol{margin:6px 0 0;padding-left:18px}.note-body .tablewrap{margin-top:8px}.note-body h3{margin:0 0 6px;font-size:14.5px}
+.note-tip{border-color:var(--accent);background:var(--accent-bg)}.note-tip .note-label{color:var(--accent)}
+.note-warn{border-color:var(--warn);background:var(--warn-bg)}.note-warn .note-label{color:var(--warn)}
+.note-danger{border-color:var(--danger);background:var(--danger-bg)}.note-danger .note-label{color:var(--danger)}
+.note-note{border-color:var(--note);background:var(--note-bg)}.note-note .note-label{color:var(--note)}
+
+.badge{display:inline-block;font-size:11px;font-weight:700;line-height:1.5;padding:1px 7px;border-radius:4px;vertical-align:1px;margin-right:2px}
+.b-danger{background:var(--danger-bg);color:var(--danger)}.b-warn{background:var(--warn-bg);color:var(--warn)}.b-note{background:var(--note-bg);color:var(--note)}.b-tip{background:var(--accent-bg);color:var(--accent)}
+.tbd{display:inline-block;font-size:12px;line-height:1.5;padding:2px 8px;border-radius:4px;background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn-line);vertical-align:1px;font-weight:500}
+
+.tablewrap{overflow-x:auto;margin:0 0 18px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-size:12.5px;color:var(--fg-2);font-weight:700;background:var(--surface-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td .tbd,td .badge{white-space:normal}
+
+.steps-ol{counter-reset:s;list-style:none;padding:0;max-width:68ch}
+.steps-ol li{counter-increment:s;display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}
+.steps-ol li::before{content:counter(s);flex:none;width:24px;height:24px;border-radius:50%;background:var(--surface-2);color:var(--fg-2);font-size:12.5px;font-weight:700;display:grid;place-items:center}
+
+.decision{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:16px 18px;margin:0 0 18px;max-width:68ch}
+.decision>b{display:block;font-size:14.5px;margin-bottom:11px}
+.opts{display:flex;flex-wrap:wrap;gap:7px}
+.opt{font:inherit;font-size:13.5px;padding:6px 12px;border:1px solid var(--line-2);background:var(--bg);color:var(--fg-2);border-radius:6px;cursor:pointer;text-align:left}
+.opt:hover{border-color:var(--accent-line);color:var(--fg)}
+.opt[aria-pressed="true"]{background:var(--accent-bg);border-color:var(--accent);color:var(--accent);font-weight:500}
+.answer{margin-top:13px;padding:12px 14px;border-radius:6px;background:var(--accent-bg);border-left:3px solid var(--accent);font-size:14.5px}
+.deeplink{display:inline-flex;gap:8px;padding:8px 13px;border:1px solid var(--accent-line);border-radius:6px;text-decoration:none;font-size:14px}
+.deeplink span{font-family:var(--mono);font-size:11.5px;opacity:.7}
+
+.backlinks{font-size:13px;color:var(--fg-3);margin:-4px 0 14px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.backlinks a{text-decoration:none;background:var(--accent-bg);color:var(--accent);padding:2px 9px;border-radius:4px;font-weight:500}
+.sec-foot{margin:22px 0 0;padding-top:10px;border-top:1px dashed var(--line);font-size:12.5px;display:flex;gap:16px}
+.sec-foot a{color:var(--fg-3);text-decoration:none}
+.sec-foot a:hover{color:var(--accent)}
+.nores{display:none;padding:14px;border:1px dashed var(--line-2);border-radius:8px;color:var(--fg-3);font-size:14px;max-width:68ch}
+body.searching section:not(.hit){display:none}
+body.searching .hero,body.searching .chapter{display:none}
+body.searching .nores.show{display:block}
+
+.backbtn{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:75;font:inherit;font-size:13.5px;font-weight:500;padding:10px 16px;border:1px solid var(--accent-line);border-radius:999px;background:var(--surface);color:var(--accent);box-shadow:0 6px 20px rgba(23,32,51,.16);cursor:pointer;max-width:calc(100vw - 32px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.backbtn:hover{background:var(--accent-bg)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:6px;font-size:13px;z-index:80;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+
+@media (max-width:860px){
+  .shell{grid-template-columns:minmax(0,1fr);gap:0}
+  .navbtn{display:inline-block}
+  .sidenav{display:none;position:fixed;inset:0;top:auto;bottom:0;max-height:78vh;z-index:70;background:var(--surface);border-top:1px solid var(--line-2);border-radius:14px 14px 0 0;padding:16px 20px calc(24px + env(safe-area-inset-bottom,0px));overflow-y:auto;box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+  .sidenav.open{display:block}
+  .scrim{display:none;position:fixed;inset:0;z-index:65;background:rgba(0,0,0,.45)}
+  .scrim.open{display:block}
+  .nav-close{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-weight:700;font-size:14px}
+  .nav-close button{font:inherit;font-size:13px;padding:4px 10px;border:1px solid var(--line-2);background:var(--surface);color:var(--fg-2);border-radius:6px;cursor:pointer}
+  .chapter-title{font-size:22px}
+  .anchor{opacity:1}
+  .brand small{display:none}
+}
+@media (min-width:861px){.nav-close,.scrim{display:none}}
+
+@media (max-width:860px){.tablewrap table{min-width:560px}}
+.concepts{margin-top:26px;padding:18px 20px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);max-width:68ch}
+.concepts h3{margin:0 0 12px;font-size:15px;color:var(--accent)}
+.concepts dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);gap:10px 16px}
+.concepts dt{font-weight:700;font-size:14.5px;color:var(--fg)}
+.concepts dd{margin:0;font-size:14px;color:var(--fg-2);line-height:1.75}
+.concepts p{margin:14px 0 0;font-size:14px;color:var(--fg-2);padding-top:12px;border-top:1px solid var(--line)}
+@media (max-width:600px){.concepts dl{grid-template-columns:1fr;gap:4px}.concepts dd{margin-bottom:8px}}
+.hero p+p{margin-top:10px}
+.hero p b{color:var(--fg)}
+.hero .hero-sub{margin-top:18px;color:var(--fg-3);font-size:14px}
+.hero-fit{margin-top:22px;padding:16px 18px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;background:#f7f9fd}
+.hero-fit>b{display:block;font-size:15px;margin-bottom:8px}
+.hero-fit ul{margin:0 0 10px;padding-left:20px}.hero-fit li{margin:3px 0}
+.hero-fit p{margin:0}.hero-fit p+p{margin-top:8px}
+.hero-fit .hero-quote{color:var(--fg-2);font-style:normal;padding-left:12px;border-left:2px solid var(--line)}
+.nav-group h4 a{color:inherit;text-decoration:none}
+.nav-group h4 a.on{color:var(--accent)}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-top:18px;border-top:1px solid var(--line)}
+.pager a{flex:1;max-width:48%;text-decoration:none;color:var(--fg-2);font-size:13.5px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;min-width:0}
+.pager a:hover{border-color:var(--accent-line);color:var(--accent)}
+.pager a b{display:block;color:var(--fg);font-size:14.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pager a.next{text-align:right;margin-left:auto}
+.pager a span{font-size:11.5px;color:var(--fg-3)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin:14px 0 30px}
+.card{display:block;text-decoration:none;color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--surface)}
+.card:hover{border-color:var(--accent-line)}
+.card .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:14px;margin-bottom:8px}
+.card b{display:block;font-size:15px;margin-bottom:4px}
+.card p{margin:0;font-size:13px;color:var(--fg-2)}
+.card.plain .n{background:var(--surface-2);color:var(--fg-2)}
+.seclist{list-style:none;padding:0;margin:0 0 20px;max-width:68ch}
+.seclist li{border-bottom:1px solid var(--line)}
+.seclist a{display:flex;gap:12px;align-items:baseline;padding:11px 2px;text-decoration:none;color:var(--fg)}
+.seclist a:hover{color:var(--accent)}
+.seclist a i{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--fg-3);min-width:36px}
+.pagetoc{margin:0 0 22px;padding:12px 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface-2);font-size:13.5px;max-width:68ch}
+.pagetoc b{display:block;font-size:12px;color:var(--fg-3);margin-bottom:6px}
+.pagetoc a{display:inline-block;margin:2px 10px 2px 0;color:var(--fg-2);text-decoration:none}
+.pagetoc a:hover{color:var(--accent)}
+.results{position:absolute;left:0;right:0;top:calc(100% + 6px);background:var(--surface);border:1px solid var(--line-2);border-radius:8px;box-shadow:0 10px 30px rgba(23,32,51,.14);max-height:60vh;overflow-y:auto;z-index:60;display:none}
+.results.show{display:block}
+.results a{display:block;padding:9px 12px;text-decoration:none;color:var(--fg);border-bottom:1px solid var(--line);font-size:13.5px}
+.results a small{display:block;color:var(--fg-3);font-size:12px;margin-top:2px}
+.results a:hover{background:var(--accent-bg)}
+.results .none{padding:10px 12px;color:var(--fg-3);font-size:13px}
+.search{position:relative}
+h3{margin-top:30px}
+.place{margin:0 0 20px;padding:12px 16px;border:1px dashed #d9a441;border-radius:10px;background:#fffaf0;font-size:13.5px}.place>b{display:block;color:#8a5a00;margin-bottom:6px}.place ul{margin:0;padding-left:18px}.place li{margin:3px 0}.place small{color:var(--fg-3);margin-left:4px}
+.place-tag{margin:-4px 0 12px;font-size:12.5px;color:#8a5a00;background:#fffaf0;border-left:3px solid #d9a441;padding:4px 10px;display:inline-block}.place-tag code{font-size:12px}
+.decision.dec2{max-width:980px;display:flex;flex-direction:column;gap:16px}
+.dec2 .opts{flex-direction:row;flex-wrap:wrap;gap:7px}
+.dec2 .dec-r{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.dec2 .dec-img{width:100%;height:auto;max-height:560px;object-fit:contain;border-radius:8px;border:1px solid var(--line);background:#fff}
+.dec2 .dec-cap{font-size:12.5px;color:var(--fg-2);font-weight:600}.dec2 .dec-src{font-size:11px;color:var(--fg-3)}
+
+.gallery{display:flex;flex-wrap:wrap;gap:14px;margin:12px 0 22px;max-width:980px}
+.gallery figure{margin:0;flex:0 0 calc(50% - 7px);max-width:calc(50% - 7px);text-align:center}.gallery img{width:100%;height:auto;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:#fff}@media (max-width:600px){.gallery figure{flex-basis:100%;max-width:100%}}
+.gallery figcaption{margin-top:6px;font-size:12.5px;color:var(--fg-2);font-weight:600}.gallery .gal-src{flex-basis:100%;font-size:11px;color:var(--fg-3)}
+details.more{margin:18px 0 24px;border:1px solid var(--line);border-radius:10px;background:#fafbfd;max-width:980px}details.more summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--fg-2);list-style:none}details.more summary::before{content:"▸ ";color:var(--accent)}details.more[open] summary::before{content:"▾ "}details.more summary::-webkit-details-marker{display:none}details.more>*:not(summary){margin-left:16px;margin-right:16px}details.more>ol{padding-left:36px;margin-bottom:14px}details.more li{margin:6px 0}details.more>p{margin-top:4px}
+.shot{margin:18px 0 22px;max-width:100%}.shot img{display:block;width:100%;max-width:980px;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.06)}.shot figcaption{margin-top:8px;font-size:13px;color:var(--fg-3)}
+.shot-ph{margin:18px 0 22px;padding:28px 16px;border:2px dashed var(--line);border-radius:10px;color:var(--fg-3);text-align:center;font-size:14px;max-width:980px}.shot-ph small{display:block;margin-top:4px;font-size:12px;opacity:.7}
+.fields{counter-reset:f;list-style:none;padding:0;margin:14px 0 24px;max-width:980px}.fields>li{counter-increment:f;position:relative;padding:10px 0 10px 44px;border-top:1px solid var(--line)}.fields>li:last-child{border-bottom:1px solid var(--line)}.fields>li::before{content:counter(f);position:absolute;left:4px;top:10px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}.fields>li b:first-child{display:inline-block;margin-right:6px}.fields>li p{margin:4px 0 0}.fields>li ul{margin:6px 0 0;padding-left:18px}.fields>li li{margin:2px 0}
+/* 가상 저니 매트릭스 보드 */
+.jmb{margin:16px 0 24px;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;max-width:980px}
+.jmb-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line);font-size:12.5px}
+.jmb-top .lab{color:var(--fg-3);margin-right:2px}.jmb-top .seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}.jmb-top .seg span{padding:3px 9px}.jmb-top .seg .on{background:var(--accent);color:#fff}.jmb-top .btn{margin-left:auto;background:var(--accent);color:#fff;padding:5px 11px;border-radius:7px;font-weight:600}
+.jmb-tabs{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12.5px}.jmb-tabs span{padding:4px 10px;border:1px solid var(--line);border-radius:6px;color:var(--fg-2)}.jmb-tabs .on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent);font-weight:700}
+.jmb-wrap{overflow-x:auto}.jmb table{border-collapse:collapse;width:100%;min-width:760px;font-size:12.5px}
+.jmb th{background:#f6f8fb;font-weight:600;color:var(--fg-2);padding:8px 6px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}.jmb th.l{text-align:left}
+.jmb td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}.jmb td.l{text-align:left}
+.jmb tr.total td{background:#f6f8fb;font-weight:700}
+.jmb .tg{display:inline-block;width:30px;height:16px;border-radius:9px;background:#cfd6e0;position:relative;vertical-align:middle}.jmb .tg::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:#fff}.jmb .tg.on{background:var(--accent)}.jmb .tg.on::after{left:16px}
+.jmb .fn{display:inline-block;padding:1px 7px;border-radius:5px;font-size:11.5px;font-weight:600;border:1px solid}
+.jmb .f1{color:#b7791f;border-color:#f0d58c;background:#fff8e6}.jmb .f2{color:#2f855a;border-color:#9ae6b4;background:#effaf3}.jmb .f3{color:#2b6cb0;border-color:#90cdf4;background:#ebf8ff}.jmb .f4{color:#6b46c1;border-color:#d6bcfa;background:#f5f0ff}.jmb .f5{color:#b83280;border-color:#fbb6ce;background:#fff5f9}.jmb .f6{color:#c05621;border-color:#fbd38d;background:#fffaf0}.jmb .f7{color:#742a2a;border-color:#feb2b2;background:#fff5f5}
+.jmb .c0{color:#b8c0cc}.jmb .c1{background:#e8eefc}.jmb .c2{background:#c9d8fa}.jmb .c3{background:#9db9f5;color:#0b2a6b}.jmb .c4{background:#5c88e8;color:#fff}.jmb .c5{background:#1f4fc4;color:#fff}
+
+.jmb .off{color:#b8c0cc}.jmb .off small{display:block;font-size:9.5px}
+.jmb-foot{padding:10px 14px;font-size:12px;color:var(--fg-3);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px}.jmb-foot i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px}
+.jmb-legend{margin:0 0 22px;padding:0;list-style:none;font-size:14px;max-width:980px}.jmb-legend li{padding:6px 0 6px 30px;position:relative}.jmb-legend li b.n{position:absolute;left:0;top:6px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center}
+h3.menu{margin-top:12px;padding:14px 18px;background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:10px;font-size:17px}
+.menu-end{margin:30px 0 0;padding:10px 14px;border:1px dashed var(--line);border-radius:8px;color:var(--fg-3);font-size:13.5px;max-width:68ch}
+.menu-end::before{content:"✔ ";color:var(--accent);font-weight:700}
+hr.menu-sep{border-top:2px solid var(--accent);opacity:.35;margin:34px 0 26px}
+h4{margin-top:22px}
+</style></head><body><div class="topbar"><div class="topbar-in">
+  <div class="brand"><a href="index.html" style="color:inherit;text-decoration:none">리토스 가이드북</a><small>개발팀 검수본 · 2026-10-11</small></div>
+  <div class="search"><input id="q" type="search" placeholder="검색" autocomplete="off" aria-label="가이드 검색"><div class="results" id="results"></div></div>
+  <button class="navbtn" id="navbtn" type="button" aria-expanded="false" aria-controls="sidenav">목차</button>
+</div></div>
+<div class="scrim" id="scrim"></div>
+<div class="shell">
+  <nav class="sidenav" id="sidenav"><div class="nav-close"><span>목차</span><button type="button" id="navclose">닫기</button></div><div class="nav-group nav-before"><h4><a href="ch-1.html" data-page="ch-1.html">시작하기 전에</a></h4><ul><li><a href="s-1-1.html" data-page="s-1-1.html">리토스는 무엇을 하나요</a></li><li><a href="s-1-2.html" data-page="s-1-2.html">메뉴 둘러보기</a></li><li><a href="s-1-3.html" data-page="s-1-3.html">가입부터 발송 가능까지</a></li><li><a href="s-1-4.html" data-page="s-1-4.html">계정 상태</a></li><li><a href="s-1-5.html" data-page="s-1-5.html">누구에게 보낼 수 있나 — 채널별 조건</a></li></ul></div><div class="nav-group nav-steps"><h4><a href="ch-2.html" data-page="ch-2.html">리토스 시작하기 · 7단계</a></h4><ul><li><a href="s-2-1.html" data-page="s-2-1.html"><i>1</i>설정하기</a></li><li><a href="s-2-2.html" data-page="s-2-2.html"><i>2</i>퍼널 분석과 LTV 분석 확인하기</a></li><li><a href="s-2-3.html" data-page="s-2-3.html"><i>3</i>아하모먼트와 고객 행동 분석 확인하기</a></li><li><a href="s-2-4.html" data-page="s-2-4.html"><i>4</i>캠페인 만들고 콘텐츠 등록하기</a></li><li><a href="s-2-5.html" data-page="s-2-5.html"><i>5</i>저니 매트릭스 보드에서 켜고 끄고, 순서 정하기</a></li><li><a href="s-2-6.html" data-page="s-2-6.html"><i>6</i>발송하고 결과 확인하기</a></li><li><a href="s-2-7.html" data-page="s-2-7.html"><i>7</i>최적화 운영하기</a></li></ul></div><div class="nav-group nav-ref"><h4>자세히 보기</h4></div><div class="nav-group"><h4><a href="ch-3.html" data-page="ch-3.html">3. 콘텐츠 규격</a></h4><ul><li><a href="s-3-1.html" data-page="s-3-1.html">카카오 브랜드메시지 — 어떤 유형으로 만들까</a></li><li><a href="s-3-2.html" data-page="s-3-2.html">카카오 알림톡</a></li><li><a href="s-3-3.html" data-page="s-3-3.html">개인화 변수 전체 목록</a></li><li><a href="s-3-4.html" data-page="s-3-4.html">타게팅 조건 전체 목록</a></li></ul></div><div class="nav-group"><h4><a href="ch-4.html" data-page="ch-4.html">4. 성과 화면</a></h4><ul><li><a href="s-4-1.html" data-page="s-4-1.html">대시보드</a></li><li><a href="s-4-2.html" data-page="s-4-2.html">리포트</a></li><li><a href="s-4-3.html" data-page="s-4-3.html">퍼널 분석</a></li><li><a href="s-4-4.html" data-page="s-4-4.html">LTV 분석</a></li><li><a href="s-4-5.html" data-page="s-4-5.html">지표 용어</a></li></ul></div><div class="nav-group"><h4><a href="ch-5.html" data-page="ch-5.html">5. 요금과 결제</a></h4><ul><li><a href="s-5-1.html" data-page="s-5-1.html">요금제</a></li><li><a href="s-5-2.html" data-page="s-5-2.html">충전금</a></li><li><a href="s-5-3.html" data-page="s-5-3.html">결제 내역과 명세서</a></li></ul></div><div class="nav-group"><h4><a href="ch-6.html" data-page="ch-6.html">6. 자주 묻는 질문</a></h4><ul><li><a href="s-6.html" data-page="s-6.html">자주 묻는 질문</a></li></ul></div><div class="nav-group nav-dev"><h4>개발팀 부록</h4><ul><li><a href="app-open.html" data-page="app-open.html">확인 필요 목록</a></li><li><a href="app-check.html" data-page="app-check.html">화면 대조 기록 · 변수 30종</a></li><li><a href="app-links.html" data-page="app-links.html">화면별 가이드 링크</a></li></ul></div></nav>
+  <main><section id="app-check"><div class="sec-top"><p class="sec-kicker">개발팀 부록 B</p><a class="anchor" href="#" data-copy>이 페이지 주소 복사</a></div><h2>화면 대조 기록 · 변수 30종</h2><p><code>03-확인-필요-목록.md</code>의 <span class="badge b-danger">미확인</span> 미확정 항목을 <strong>데브(dev.retous.ai) 실제 화면</strong>에서 대조했습니다.
+로그인된 슈퍼어드민에서 <strong>SA 모드 → 회사(미스터밀크) 전환</strong>으로 콘텐츠 에디터·캠페인·마이페이지를 열어 확인했습니다.</p>
+<p>근거: 콘텐츠 생성 화면(<code>/journey-matrix-board/contents/new</code>), 캠페인 생성 화면, 마이페이지 구독 관리, 슈퍼어드민 Liquid 변수 관리.</p>
+<hr>
+<h2 id="발행-차단-전부-해소"><span class="badge b-danger">차단</span> 발행 차단 — 전부 해소</h2><h3 id="1-알림톡-메시지-유형-부가정보형-화면-확정">#1 알림톡 메시지 유형 = 부가정보형 <span class="badge b-tip">확정</span> 화면 확정</h3><p>콘텐츠 에디터 알림톡 「메시지 유형」 드롭다운: <strong>기본형 · 부가 정보형 · 채널 추가형 · 복합형</strong>.
+「와이드 이미지형」은 알림톡에 없음(브랜드메시지 쪽). 가이드 그대로 둔다.</p>
+<h3 id="2-캐러셀-피드형-캐러셀-커머스형-화면-확정">#2 캐러셀 피드형 ≠ 캐러셀 커머스형 <span class="badge b-tip">확정</span> 화면 확정</h3><p>브랜드메시지 「메시지 유형」 드롭다운 6종: <strong>기본 텍스트 이미지형 · 와이드 이미지형 · 와이드 리스트형 · 커머스형 · 캐러셀 피드형 · 캐러셀 커머스형</strong>. 둘은 별개 항목. 문서의 <code>0-1-6</code> 중복은 문서 오기.</p>
+<h3 id="3-구독료-결제일-매월-20일-화면-확정-양쪽-일치">#3 구독료 결제일 = 매월 20일 <span class="badge b-tip">확정</span> 화면 확정 (양쪽 일치)</h3><ul>
+<li>슈퍼어드민 회사 상세: 「정기 결제일 매월 20일」 · 다음 결제 2026.10.20</li>
+<li>마이페이지 &gt; 구독 관리: 「다음 결제일 2026.10.20」
+<strong>양쪽 모두 매월 20일.</strong> 구자료의 「전월 28일」은 <strong>현행 아님</strong>. 가이드는 &quot;매월 20일(다음 결제일 표기)&quot;로 쓴다.</li>
+</ul>
+<h3 id="4-버튼명-글자수-14자-화면-확정">#4 버튼명 글자수 = 14자 <span class="badge b-tip">확정</span> 화면 확정</h3><ul>
+<li>알림톡 기본형 버튼: <code>0/14</code> &quot;띄어쓰기 포함 14자 이내&quot;</li>
+<li>브랜드메시지 기본 텍스트 이미지형 버튼: <code>0/14</code> 동일
+구자료 캡션의 <code>0/8</code>은 현행 아님. 가이드의 14자가 맞다.
+※ 와이드/커머스/캐러셀 유형의 버튼명 글자수는 미세 확인 미완(대개 카카오 8자). 필요 시 추가 확인.</li>
+</ul>
+<hr>
+<h2 id="발행-전-정리-해소"><span class="badge b-warn">정리</span> 발행 전 정리 — 해소</h2><h3 id="5-와이드-리스트형-글자수-화면-확정">#5 와이드 리스트형 글자수 <span class="badge b-tip">확정</span> 화면 확정</h3><ul>
+<li>리스트1 내용: <code>0/25</code> (25자, 줄바꿈 1회) · 이미지 2:1(800×400)</li>
+<li>리스트2·3 내용: <code>0/30</code> &quot;최대 30자, 줄바꿈 1회&quot; · 이미지 1:1(800×800)
+→ <strong>리스트1 = 25자, 리스트2·3 = 30자.</strong> 가이드의 30(리스트2·3)이 맞고, 25는 리스트1 혼동이었음.</li>
+</ul>
+<h3 id="7-이미지-용량-화면-확정">#7 이미지 용량 <span class="badge b-tip">확정</span> 화면 확정</h3><p>브랜드메시지 와이드 이미지형 이미지: <strong>최대 5MB</strong> (최소 500px, JPG/PNG). 가이드의 5MB가 맞다.</p>
+<h3 id="8-와이드-이미지형-규격-화면-확정-가이드-수정-필요">#8 와이드 이미지형 규격 <span class="badge b-tip">확정</span> 화면 확정 — 가이드 수정 필요</h3><p>실제: <strong>이미지 비율 1:1 ~ 2:1 · 최소 500px · 5MB · JPG/PNG</strong>. 내용 76자, 줄바꿈 최대 5개.
+→ 가이드의 「800×600(4:3), 10MB」는 <strong>틀림.</strong> 「1:1~2:1, 최소 500px, 5MB, JPG/PNG」로 교체.
+→ <strong>동영상 지원 없음</strong>(이미지 JPG/PNG만). 가이드에서 동영상 언급은 빼는 게 맞다.</p>
+<h3 id="11-일반-발송-상-중-하-화면-확정-없음">#11 일반 발송 상/중/하 <span class="badge b-tip">확정</span> 화면 확정 — 없음</h3><p>캠페인 생성 「발송 우선 순위」 = <strong>무조건 발송 / 일반 발송</strong> 2개뿐. 상/중/하 없음.
+→ 리포트에만 있던 표기. 가이드에 상/중/하를 넣지 않은 현재 초안이 맞다.</p>
+<hr>
+<h2 id="추가-확정-가이드에-반영할-것">추가 확정 — 가이드에 반영할 것</h2><h3 id="delay-time-가이드-2-5-콘텐츠-단위-설정">Delay Time (가이드 2-5) — 콘텐츠 단위 설정</h3><ul>
+<li>Delay Time은 <strong>캠페인이 아니라 콘텐츠</strong>에 붙는다. 캠페인 상세의 콘텐츠 리스트에 <code>D + N</code>으로 표시됨.</li>
+<li><strong>예약 캠페인</strong>: 콘텐츠 에디터 Delay Time = <code>1일 후 / 3일 후 / 5일 후 / 7일 후 / 직접 선택</code>(일 단위). 캠페인 자체의 발송 유형은 「예약(오전/오후·시·분 발송 시각)」.</li>
+<li><strong>실시간 캠페인</strong>: 캠페인 레벨에 시각/오프셋 입력 없음(트리거 발송). → 노션 기준 「실시간은 Delay Time 비움」과 일치.
+→ 가이드 2-5는 &quot;Delay Time = 콘텐츠별 발송 시점. 예약은 일(日) 단위 프리셋(1·3·5·7)+직접선택, 실시간은 트리거 즉시~분 단위&quot;로 수정. 「예약 1~180일/실시간 3~60분」 단정 표현은 화면 프리셋 기준으로 완화.</li>
+</ul>
+<h3 id="case-a-b-c-개인화-변수-제외-로직-화면-확정">Case A/B/C (개인화 변수 제외 로직) — 화면 확정</h3><p>콘텐츠 에디터 「변수 선택하기」 모달에 명시:</p>
+<ul>
+<li>등록된 변수만 실제 값으로 치환. <strong>미등록 변수 사용 시 콘텐츠 생성·테스트 발송 제한.</strong></li>
+<li><strong>저장된 데이터가 없으면 「대체 문구」로 발송</strong> (변수마다 대체 문구 1개 설정).</li>
+<li><strong>변수 값과 대체 문구가 모두 없는 고객은 발송 대상에서 제외.</strong>
+→ <strong>Case A</strong> 값 있음=치환 / <strong>Case B</strong> 값 없음=대체 문구 / <strong>Case C</strong> 값·대체문구 모두 없음=제외.
+→ 개발팀 질문 불필요. 가이드 4-6의 Case A/B/C는 「대체 문구 설정 여부」로 설명하면 됨.</li>
+</ul>
+<h3 id="취소선">취소선</h3><p>콘텐츠 에디터 본문에 취소선 전용 버튼 없음 → 텍스트 규칙(<code>\s</code>) 방식으로 추정. 정확한 입력 규칙은 카카오/제품 문서 확인 필요(발행 차단 아님).</p>
+<h3 id="앱푸시-9">앱푸시 (#9)</h3><p>광고 콘텐츠의 채널 선택에는 「브랜드 메시지」만 노출됨(이 화면 기준). 앱푸시는 스키마·메뉴에 존재하나 실제 광고 발송 노출은 확인 안 됨. 개발팀 확인 항목 유지.</p>
+<h3 id="요금제-가이드-8-1-화면-확정">요금제 (가이드 8-1) — 화면 확정</h3><p>마이페이지 구독 관리:</p>
+<ul>
+<li><strong>Pro 35</strong> MAU 30만 미만 · 월 35만</li>
+<li><strong>Pro 55</strong> MAU 30만~50만 · 월 55만</li>
+<li><strong>Pro 85</strong> MAU 50만~80만 · 월 85만</li>
+<li><strong>Pro 125</strong> MAU 80만~120만 · 월 125만</li>
+<li><strong>Enterprise</strong> MAU 120만 초과/자체구축 · 별도 견적</li>
+<li>연 결제 10% 할인. 공통: 활성 캠페인 100개, 타게팅 전체, 카페24·아임웹, Liquid 변수 무제한, 워크스페이스 10인, 알림톡·브랜드메시지·문자.</li>
+</ul>
+<h3 id="메시지-본문-버튼-글자수-화면-확정-정리">메시지 본문/버튼 글자수 (화면 확정 정리)</h3><div class="tablewrap"><table>
+<thead>
+<tr>
+<th>유형</th>
+<th>본문</th>
+<th>버튼명</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>알림톡 기본형</td>
+<td>1,000자</td>
+<td>14자</td>
+<td>버튼 URL 500자(128자 추적)</td>
+</tr>
+<tr>
+<td>브랜드 기본 텍스트 이미지형</td>
+<td>1,300자</td>
+<td>14자</td>
+<td>줄바꿈 99개, URL 입력 가능</td>
+</tr>
+<tr>
+<td>브랜드 와이드 이미지형</td>
+<td>76자</td>
+<td>—</td>
+<td>이미지 1:1~2:1·500px·5MB, 줄바꿈 5개</td>
+</tr>
+<tr>
+<td>브랜드 와이드 리스트형</td>
+<td>타이틀 20 / 리스트1 25 / 리스트2·3 30</td>
+<td>—</td>
+<td>리스트1 2:1, 리스트2·3 1:1</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="2차-확인-같은-날-알림톡-유형별-글자수-delay-time-범위">2차 확인 (같은 날) — 알림톡 유형별 글자수 · Delay Time 범위</h2><h3 id="예약-delay-time-직접-선택-1일-180일">예약 Delay Time 직접 선택 = 1일 ~ 180일 <span class="badge b-tip">확정</span></h3><p>「직접 선택」 드롭다운 옵션이 <code>1일 후</code> ~ <code>180일 후</code>. 가이드 원래 숫자(1~180일)가 맞았다.</p>
+<h3 id="알림톡-글자수-모든-유형-총-1-000자-가이드의-1-300자는-틀림">알림톡 글자수 — 모든 유형 총 1,000자 <span class="badge b-tip">확정</span> (가이드의 1,300자는 틀림)</h3><div class="tablewrap"><table>
+<thead>
+<tr>
+<th>유형</th>
+<th>화면 문구</th>
+<th>버튼</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>기본형</td>
+<td>변수 포함 1,000자 이내</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>부가 정보형</td>
+<td>변수·부가정보 포함 1,000자. 부가정보 0/500 &quot;URL 포함 가능, 본문 총량에 합산&quot;</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>채널 추가형</td>
+<td>변수·채널 추가 안내 40자 포함 1,000자 (<code>40/1000</code>에서 시작). 안내 문구 고정·수정 불가</td>
+<td>선택</td>
+</tr>
+<tr>
+<td>복합형</td>
+<td>변수·부가정보·채널 추가 안내 40자 포함 1,000자. 부가정보 0/500</td>
+<td>선택</td>
+</tr>
+</tbody></table></div>
+<h3 id="아이템-리스트형-리스트-추가-시-700자">아이템 리스트형 — 리스트 추가 시 700자 <span class="badge b-tip">확정</span></h3><ul>
+<li>강조 유형만 아이템 리스트형으로 바꾸면 1,000자 그대로. **리스트를 실제로 추가하면 본문 <code>/700</code>, 부가정보 <code>/200</code>**로 줄어듦.</li>
+<li>가이드의 「1,300 → 1,000」은 숫자가 틀림. **「1,000 → 700, 부가정보 500 → 200」**이 맞다.</li>
+<li>이미지·헤더·하이라이트·리스트 중 1개 이상 필수. 리스트 추가 시 2개로 시작.</li>
+<li>요약 아이템명 6자 · 요약 아이템 내용 14자(화폐 단위·숫자·변수만).</li>
+<li>하이라이트 타이틀·설명은 <strong>변수 치환 후 초과하면 미발송</strong>(말줄임 아님).</li>
+</ul>
+<h3 id="강조표기형-03-6-해소">강조표기형 <span class="badge b-tip">확정</span> (03 #6 해소)</h3><ul>
+<li>타이틀: 입력 50자 · Android 2줄 23자(24자부터 말줄임) · <strong>iOS 2줄 27자</strong>(28자부터). 가이드의 iOS 21자는 틀림.</li>
+<li>보조문구: 입력 50자 · Android 18자(19자부터) · iOS 21자(22자부터). 가이드와 일치.</li>
+</ul>
+<h3 id="확인하지-못한-것">확인하지 못한 것</h3><ul>
+<li><del>\</del>실시간 Delay Time 범위<del>\</del> → <strong>2026-10-09 확인.</strong> dev 미스터밀크에 테스트 실시간 캠페인(id=40, 무조건 발송 · 전체 · 회원 가입)을 저장하고 New Content 화면을 열어 봄. Delay Time 라벨 「[타게팅 없음] 실시간 발송 시점을 선택해주세요」, 프리셋 <code>3분 후 · 5분 후 · 10분 후 · 30분 후 · 60분 후 발송</code> + 직접 선택 드롭다운 <strong>5분 후 ~ 60분 후(1분 단위)</strong>. 발송 기간은 직접 설정/무제한 설정, 메시지 목적 기본값 알림. 테스트 캠페인은 확인 후 삭제 대상.</li>
+<li><strong>취소선 <code>\s</code> 규칙</strong> — 콘텐츠 화면 어디에도 취소선 버튼·안내 문구 없음. 카카오/제품 문서로 확인 필요.</li>
+</ul>
+<hr>
+<h2 id="3차-pj-결정-화면-확인-앱푸시-ltv-타게팅-운영-설정">3차 — PJ 결정 + 화면 확인 (앱푸시 · LTV · 타게팅 · 운영 설정)</h2><h3 id="앱푸시-03-9-기능-미구현-pj-확정">앱푸시 (03 #9) — 기능 미구현 (PJ 확정)</h3><p>메뉴·채널 우선순위·채널 아이콘에 보이지만 발송 불가. 가이드에서 &quot;아직 제공되지 않음&quot;으로 명시하고, 검수 없는 채널 목록에서 뺐다.</p>
+<h3 id="ltv-03-10-3변수-공식-pj-확정-화면-검산">LTV (03 #10) — 3변수 공식 (PJ 확정 + 화면 검산)</h3><ul>
+<li>공식: <strong>LTV = 구매전환율 × 객단가 × 구매빈도.</strong> 생애주기는 곱하지 않고 M0 → M+n 실측 누적으로 보여준다.</li>
+<li>화면: 분석 &gt; LTV에서 날짜·숫자 박스를 클릭하면 「월간 코스트 상세」 패널이 열림 — 신규회원 · 최종 LTV · 구매전환율 · 객단가(ARPPU) 요약, LTV 성장 추이(이번 구간 증가/이전 누적), 구간별 표(구매전환율 · 객단가 · 구매빈도 · LTV).</li>
+<li>검산: 미스터밀크 2025/10 M0 = 60.43% × 29,770 × 1.45 ≈ 26,086 (화면 26,129, 반올림 차).</li>
+<li> 패널 제목이 「월간 <strong>코스트</strong> 상세」 · 「2025/10 <strong>코스트</strong>」 — 「코호트」의 오기로 보임. 개발팀 전달 대상.</li>
+</ul>
+<h3 id="타게팅-프리셋-03-17-제공됨-pj-설명-화면-확인">타게팅 프리셋 (03 #17) — 제공됨 (PJ 설명 + 화면 확인)</h3><ul>
+<li>메뉴 <strong>설정 &gt; 조건식 관리</strong>(페이지 제목 「타게팅 설정」). 탭 2개:<ul>
+<li><strong>공통 타게팅 조건</strong> — 읽기 전용, 67종(예약 53 · 실시간 14), 「선택 항목 일괄 다운로드」, 다운로드 열 <code>완료</code>. 미스터밀크는 67종 모두 완료.</li>
+<li><strong>기업 타게팅 조건</strong> — 다운로드한 조건. 상세 조건에 실제 값(「생일 7일 전」 등), 예상 모수, 적용 캠페인 수, 관리 아이콘 2개.</li>
+</ul>
+</li>
+<li>흐름: 공통에서 다운로드 → 기업 조건식에서 세부 조건 수정 → 캠페인 생성에서 메인 타겟 퍼널 선택 시 목록에 보임 → 선택하면 끝.</li>
+<li><strong>세부 조건 변경은 조건식 관리에서. 원본 수정보다 복사 후 수정 권장</strong> — 한 조건식을 여러 캠페인이 공유하기 때문(PJ).</li>
+</ul>
+<h3 id="캠페인-생성-화면-가이드-3-1-수정">캠페인 생성 화면 (가이드 3-1 수정)</h3><ul>
+<li>메뉴: 저니 매트릭스 보드 &gt; New Campaign (가이드의 「CRM 운영 &gt; 새 캠페인」은 구 명칭).</li>
+<li>발송 유형은 기본 선택 없음(가이드의 「예약이 기본값」 틀림).</li>
+<li>타게팅은 <strong>메인 타겟 퍼널을 골라야</strong> 목록이 뜸(가이드의 「고르기 전엔 전체」 틀림). 예: 재구매 → 재구매 퍼널 대상 전체 / 단골인데 N일 재구매 끊김 / 어제 재구매 완료.</li>
+<li><strong>실시간 발송</strong>: 메인 타겟 퍼널 「전체」만, 노출 퍼널 「선택 불가」, 타게팅 = 이벤트 14종(회원 가입 · 회원 등급 변경 · 장바구니 상품 추가 · 주문 접수 · 배송/입금/취소/반품/환불 상태 변경 · 각 일괄 변경 · 송장번호 변경).</li>
+<li>우선순위를 고르기 전에도 실시간 발송이 선택됨 → 「실시간은 무조건 발송일 때만」 규칙은 저장 시점 확인 필요.</li>
+</ul>
+<h3 id="캠페인-개수-03-12-최대-100개-pj-확정">캠페인 개수 (03 #12) — 최대 100개 (PJ 확정)</h3><p>요금제 공통. 마이페이지 구독 관리 「활성 캠페인 수 100개」와 일치. 가이드 1-1 · 2-4 · 3-1 · 8-1에 반영.</p>
+<h3 id="콘텐츠-목적-알림-광고-캠페인-우선순위-2026-10-09-화면-확인">콘텐츠 목적(알림/광고) × 캠페인 우선순위 — 2026-10-09 화면 확인</h3><ul>
+<li><strong>일반 발송</strong> 캠페인(탐색 회원 상품 제안)의 New Content → 「메시지 목적」 드롭다운 = <strong>광고만</strong>.</li>
+<li><strong>무조건 발송</strong> 캠페인(쿠폰 만료 임박)의 New Content → 「메시지 목적」 = <strong>알림 · 광고</strong> 둘 다.</li>
+<li>→ 규칙: 알림 콘텐츠는 무조건 발송에서만, 광고 콘텐츠는 둘 다. 초안의 「무조건 발송 = 알림만」은 기획서 14p 검토 메모를 잘못 옮긴 것(PJ 지적으로 수정).</li>
+</ul>
+<h3 id="운영-설정-가이드-7-2-수정">운영 설정 (가이드 7-2 수정)</h3><ul>
+<li>발송 주기: 액티브 / 초기 이탈 / 장기 이탈 각각 「매일」 또는 「요일 선택」 + 요일별 횟수. 안내: &quot;매일 또는 요일 중 하나만 선택 가능하며, 최대 3일까지 설정할 수 있습니다.&quot; <strong>월 단위 발송 옵션은 화면에 없음.</strong></li>
+<li><strong>광고 쿨다운</strong>(가이드에 없던 기능): 같은 회원에게 같은 콘텐츠 재발송 최소 기간, 30~365일, 기본 30일.</li>
+<li>채널 설정 메뉴는 회사 메뉴에 노출되지 않음 → <a class="xref" href="s-1-4.html">1-4 계정 상태</a> 체크리스트 1번 경로 미확정.</li>
+</ul>
+<hr>
+<h2 id="개인화-변수-전체-30종-실측-liquid-변수-관리-2026-10-08">개인화 변수 전체 30종 — 실측 (Liquid 변수 관리, 2026-10-08)</h2><p><strong>시스템(2) · 예약(17) · 실시간(11).</strong> 별도 표기 없으면 프로바이더 Imweb·Cafe24 공통.</p>
+<h3 id="시스템-자동-주입">시스템 (자동 주입)</h3><div class="tablewrap"><table>
+<thead>
+<tr>
+<th>키</th>
+<th>라벨</th>
+<th>길이</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>#{date}</code></td>
+<td>오늘 날짜</td>
+<td>10자·단문</td>
+</tr>
+<tr>
+<td><code>#{dw}</code></td>
+<td>오늘 요일</td>
+<td>5자·단문</td>
+</tr>
+</tbody></table></div>
+<h3 id="예약-발송-시점-스냅샷">예약 (발송 시점 스냅샷)</h3><div class="tablewrap"><table>
+<thead>
+<tr>
+<th>키</th>
+<th>라벨</th>
+<th>길이</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>#{name}</code></td>
+<td>회원 이름</td>
+<td>10자·단문</td>
+</tr>
+<tr>
+<td><code>#{rc}</code></td>
+<td>최근 발행 쿠폰 수</td>
+<td>5자·단문</td>
+</tr>
+<tr>
+<td><code>#{memberUid}</code></td>
+<td>회원 UID</td>
+<td>20자·중문</td>
+</tr>
+<tr>
+<td><code>#{userUid}</code></td>
+<td>고객 UID</td>
+<td>20자·중문</td>
+</tr>
+<tr>
+<td><code>#{gd}</code></td>
+<td>고객 성별 (M/F/빈값)</td>
+<td>5자·단문</td>
+</tr>
+<tr>
+<td><code>#{joinDt}</code></td>
+<td>회원 가입일</td>
+<td>10자·단문</td>
+</tr>
+<tr>
+<td><code>#{dj}</code></td>
+<td>가입 후 경과 일수</td>
+<td>5자·단문</td>
+</tr>
+<tr>
+<td><code>#{bm}</code></td>
+<td>고객 생일의 월</td>
+<td>5자·단문</td>
+</tr>
+<tr>
+<td><code>#{bd}</code></td>
+<td>고객 생일의 일</td>
+<td>5자·단문</td>
+</tr>
+<tr>
+<td><code>#{point}</code></td>
+<td>현재 보유 포인트</td>
+<td>10자·단문</td>
+</tr>
+<tr>
+<td><code>#{loginDt}</code></td>
+<td>마지막 로그인 날짜</td>
+<td>10자·단문</td>
+</tr>
+<tr>
+<td><code>#{dl}</code></td>
+<td>마지막 접속 이후 경과 일수</td>
+<td>5자·단문</td>
+</tr>
+<tr>
+<td><code>#{lastProductName}</code></td>
+<td>최근 구매 상품명</td>
+<td>35자·장문</td>
+</tr>
+<tr>
+<td><code>#{lastAmt}</code></td>
+<td>최근 구매 금액</td>
+<td>15자·중문</td>
+</tr>
+<tr>
+<td><code>#{cartProductName}</code></td>
+<td>장바구니 상품명</td>
+<td>35자·장문</td>
+</tr>
+<tr>
+<td><code>#{unusedCouponName}</code></td>
+<td>미사용 쿠폰명</td>
+<td>25자·중문</td>
+</tr>
+<tr>
+<td><code>#{uc}</code></td>
+<td>미사용 유효 쿠폰 개수</td>
+<td>5자·단문</td>
+</tr>
+</tbody></table></div>
+<h3 id="실시간-트리거-이벤트에서-추출-실시간-캠페인-전용">실시간 (트리거 이벤트에서 추출 — 실시간 캠페인 전용)</h3><div class="tablewrap"><table>
+<thead>
+<tr>
+<th>키</th>
+<th>라벨</th>
+<th>길이</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>#{ci}</code></td>
+<td>실시간 장바구니 상품 수량</td>
+<td>5자·단문</td>
+</tr>
+<tr>
+<td><code>#{ordName}</code></td>
+<td>주문자 이름</td>
+<td>10자·단문</td>
+</tr>
+<tr>
+<td><code>#{realtimeCartProductName}</code></td>
+<td>실시간 장바구니 상품명</td>
+<td>35자·장문</td>
+</tr>
+<tr>
+<td><code>#{realtimeOrderFirstProductName}</code></td>
+<td>실시간 주문 첫 번째 상품명</td>
+<td>35자·장문</td>
+</tr>
+<tr>
+<td><code>#{rtDepAmt}</code></td>
+<td>실시간 입금완료 결제 금액</td>
+<td>15자·중문</td>
+</tr>
+<tr>
+<td><code>#{rtDepPayMethod}</code></td>
+<td>실시간 입금완료 결제 방법</td>
+<td>20자·중문</td>
+</tr>
+<tr>
+<td><code>#{rtOrdTotal}</code></td>
+<td>실시간 주문 총 결제 금액</td>
+<td>15자·중문</td>
+</tr>
+<tr>
+<td><code>#{rtPtAmt}</code></td>
+<td>실시간 포인트 지급 금액 (Imweb 전용)</td>
+<td>10자·단문</td>
+</tr>
+<tr>
+<td><code>#{rtPtReason}</code></td>
+<td>실시간 포인트 지급 사유 (Imweb 전용)</td>
+<td>25자·중문</td>
+</tr>
+<tr>
+<td><code>#{rtShipOrderNo}</code></td>
+<td>실시간 배송완료 주문번호</td>
+<td>25자·중문</td>
+</tr>
+<tr>
+<td><code>#{rtShipProdName}</code></td>
+<td>실시간 배송완료 상품명</td>
+<td>35자·장문</td>
+</tr>
+</tbody></table></div>
+<div class="note note-warn"><span class="note-label">주의</span><div class="note-body"><p>가이드 4-6의 변수표는 키가 전부 기획 가명(snake_case)이라 실제와 다릅니다. 위 30종으로 통째 교체합니다.
+ 실시간 캠페인에서는 예약 변수(<code>#{name}</code> 등)가 공란으로 나갑니다. 이름은 <code>#{ordName}</code>을 써야 합니다.</p>
+</div></div><h3 id="공통-타게팅-조건-67종-전수-2026-10-09-미스터밀크-데브">공통 타게팅 조건 67종 전수 (2026-10-09, 미스터밀크 데브)</h3><ul>
+<li>예약 53: 온보딩 5 · 탐색 1 · 고려 8 · 구매 7 · 재구매 3 · 초기 이탈 2 · 장기 이탈 2 · 전체 25. 실시간 14(전부 메인 타겟 「전체」, 카페24 eventCode 기반).</li>
+<li>조건식 자체에는 무조건/일반 구분 속성이 없음. 발송 유형(예약/실시간)과 메인 타겟 퍼널만 있음. 가이드 3-4의 「무조건 ●」는 권장 기준(어제 발생 · 만료 임박 · 실시간)이며 화면에서 막지 않음.</li>
+<li>전체 목록은 가이드 3-4에 반영.</li>
+</ul>
+<h3 id="채널별-도달-동의-조건-스터디-2026-10-09-카카오-공식-가이드-nhn-딜러사-자료-보도-교차">채널별 도달·동의 조건 스터디 (2026-10-09, 카카오 공식 가이드·NHN·딜러사 자료·보도 교차)</h3><ul>
+<li><strong>브랜드메시지(딜러사 API, 리토스 현행)</strong>: 타겟 I(친구) / F(전체 친구) / M(카톡 광고 수신동의 회원 전체) / N(M 중 비친구). M·N은 ① 비즈니스 인증 채널 ② 고객센터 번호 등록 ③ 수신동의 증적 제출 ④ 최근 3개월 알림톡 발송 이력 ⑤ <strong>채널 친구 5만 이상</strong> 전부 필요 → 리토스 고객사는 I만 가능. 비친구는 080 수신거부 필수, 단가 친구보다 높음(친구 23원대/비친구 33원대 수준, 대행사별 상이). 발송 가능 08:00~20:50. SMS·이메일 동의로는 불가, 「카카오톡 채널을 통한 광고성 정보 수신 동의」 별도 필요. 자유형(FY/FN)은 2025-07-29부터 타겟팅 지원. API에 fall_back(SMS/LMS 대체), push_alarm, 쿠폰·커머스 변수 있음.</li>
+<li><strong>알림톡</strong>: 동의 불필요, 번호만 있으면 비친구도 수신. 2025-07 영리 문구 상시 감시(템플릿·채널 즉시 차단). <strong>2026-01-01 쿠폰·포인트 기준 개편</strong>: 거래·계약 지급 / 거래 유지에 필요한 사용·소멸 정보 / 사전 고지·동의 지급 — 셋만 가능. 「약관 동의 지급」「사은품 쿠폰」 근거 문구 템플릿은 사용 불가·재심사. 2026-07-28 카카오: 반복 위반 시 발신 프로필·사업자번호 영구 차단.</li>
+<li><strong>문자</strong>: 정보통신망법 50조 — 사전 동의 or <strong>거래 종료일부터 6개월 내 동종 재화 예외</strong>(시행령 61조). (광고) 머리말·080·야간(21~08) 금지·2년 주기 동의 재확인. 2026-03-12 개정안 통과: 불법스팸 매출 6% 과징금(공포 6개월 후 시행).</li>
+<li><strong>앱푸시</strong>: OS 알림 권한 ≠ 광고 동의. 별도 토글/체크박스 동의, 기본값 ON 불가, (광고)+전송자+수신거부 표기, 야간 금지.</li>
+<li><strong>카카오모먼트 경로(딜러사 아님)</strong> — 가능성 있는 대안 둘:<ul>
+<li><em>브랜드 메시지(모먼트, CBT)</em>: 비즈니스 인증 채널 + 수신동의 유저(친구 무관), CPMS 친구 20원/비친구 30원(프로모션가, 정가 40원), 채널추가 버튼 제공, 타게팅은 친구그룹 제외만. 5만 조건 언급 없음(단 CBT, 일부 계정만).</li>
+<li><em>개인화 메시지(모먼트 API)</em>: 발송 대상 = 친구 + <strong>자사몰 회원가입자</strong>, 광고주가 이벤트 발생 시 API로 발송(리토스 실시간 캠페인과 동일 구조), CPMS 25~30원, 대행사 수수료 없음, 디벨로퍼스 앱 + 모먼트 API 권한(3~5영업일) + 화이트리스트. 비친구 회원 발송 시 동의 요건·식별자(전화번호?)는 문서에 없음 → <strong>확인 필요</strong>.</li>
+</ul>
+</li>
+<li>카카오 공식 gitbook에는 상품 구조 다이어그램 없음. 브랜드메시지 9유형 한눈에 보는 이미지만 있음(img/kakao/bm-types-diagram.png 저장).</li>
+<li>개인정보위가 카카오 브랜드메시지(광고주 번호↔카톡 계정 매칭) 실태조사 중(2026-07 보도). M·N 정책은 유동적.</li>
+</ul>
+<div class="pager"><a class="prev" href="app-open.html"><span>← 이전</span><b>확인 필요 목록</b></a><a class="next" href="app-links.html"><span>다음 →</span><b>화면별 가이드 링크</b></a></div></section></main>
+</div>
+<button type="button" class="backbtn" id="backbtn" hidden>← 이전 페이지로</button>
+<script>
+(function(){
+  "use strict";
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  /* 페이지를 열면 맨 위부터 (뷰어가 이전 스크롤 위치를 되살리는 것을 막음) */
+  try{ history.scrollRestoration="manual"; }catch(e){}
+  if(!location.hash){ window.scrollTo(0,0); setTimeout(function(){ window.scrollTo(0,0); },0); window.addEventListener("load",function(){ if(!location.hash) window.scrollTo(0,0); }); }
+  var here=location.pathname.split("/").pop()||"index.html";
+  $$("#sidenav a[data-page]").forEach(function(a){ if(a.getAttribute("data-page")===here) a.classList.add("on"); });
+
+  $$(".decision").forEach(function(d){
+    var ans=document.createElement("div"); ans.className="answer"; ans.hidden=true; ($(".dec-l",d)||d).appendChild(ans);
+    $$(".opt",d).forEach(function(btn){ btn.addEventListener("click",function(){
+      $$(".opt",d).forEach(function(b){b.setAttribute("aria-pressed","false")}); btn.setAttribute("aria-pressed","true");
+      ans.textContent=btn.getAttribute("data-r"); ans.hidden=false;
+      var im=$(".dec-img",d), cap=$(".dec-cap",d), src=btn.getAttribute("data-img"); if(im&&src){ im.src=src; im.alt=btn.getAttribute("data-r")+" 예시"; if(cap) cap.textContent="예시 — "+btn.getAttribute("data-r"); } }); });
+  });
+
+  var toast=document.createElement("div"); toast.className="toast"; document.body.appendChild(toast); var tt=null;
+  function say(t){ toast.textContent=t; toast.classList.add("show"); clearTimeout(tt); tt=setTimeout(function(){toast.classList.remove("show")},1600); }
+  $$("[data-copy]").forEach(function(a){ a.addEventListener("click",function(e){
+    e.preventDefault(); var url=location.href.split("#")[0];
+    function ok(){ a.classList.add("done"); say("주소를 복사했습니다"); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(ok,function(){ say(url); }); } else { say(url); }
+  }); });
+
+  /* 뒤로 가기 */
+  var back=$("#backbtn");
+  if(back){ try{ if(history.length>1 && document.referrer && document.referrer.indexOf(location.host)>-1){ back.hidden=false; } }catch(e){}
+    back.addEventListener("click",function(){ history.back(); }); }
+
+  /* 검색: 색인 파일을 필요할 때 받아옴 */
+  var q=$("#q"), res=$("#results"), idx=null, tmr=null;
+  function render(list,v){ if(!v){res.classList.remove("show");return}
+    res.innerHTML=list.length?list.slice(0,20).map(function(p){ return '<a href="'+p.file+'">'+p.title+'<small>'+p.kicker+' · '+p.snip+'</small></a>'; }).join(""):'<div class="none">검색 결과가 없습니다.</div>';
+    res.classList.add("show"); }
+  function run(){ var v=q.value.trim().toLowerCase(); if(!v){render([],v);return}
+    var hits=idx.map(function(p){ var t=p.text.toLowerCase(); var i=t.indexOf(v); var inTitle=p.title.toLowerCase().indexOf(v)>-1;
+      if(i<0&&!inTitle) return null; var s=i<0?p.text.slice(0,60):p.text.slice(Math.max(0,i-30),i+50); return {file:p.file,title:p.title,kicker:p.kicker,snip:"…"+s+"…",score:(inTitle?2:0)+(i>-1?1:0)}; })
+      .filter(Boolean).sort(function(a,b){return b.score-a.score}); render(hits,v); }
+  if(q){ q.addEventListener("input",function(){ clearTimeout(tmr); tmr=setTimeout(function(){
+      if(idx) return run(); fetch("search-index.json").then(function(r){return r.json()}).then(function(j){ idx=j; run(); }).catch(function(){ res.innerHTML='<div class="none">검색 색인을 불러오지 못했습니다.</div>'; res.classList.add("show"); }); },150); });
+    document.addEventListener("click",function(e){ if(!e.target.closest(".search")) res.classList.remove("show"); });
+    q.addEventListener("keydown",function(e){ if(e.key==="Escape"){ res.classList.remove("show"); } }); }
+
+  var tb=$("#tbdcount"); if(tb) tb.textContent="0";
+
+  var nav=$("#sidenav"), scrim=$("#scrim"), navbtn=$("#navbtn");
+  function navOpen(on){ nav.classList.toggle("open",on); scrim.classList.toggle("open",on); navbtn.setAttribute("aria-expanded",on?"true":"false"); }
+  navbtn.addEventListener("click",function(){ navOpen(!nav.classList.contains("open")); });
+  scrim.addEventListener("click",function(){ navOpen(false); });
+  $("#navclose").addEventListener("click",function(){ navOpen(false); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") navOpen(false); });
+})();
+</script>
+</body></html>
